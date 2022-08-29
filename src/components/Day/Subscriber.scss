@@ -1,0 +1,42 @@
+.subscriber {
+  position: relative;
+  width: 25rem;
+  height: 30rem;
+  perspective: 150rem;
+
+  .side {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 25rem;
+    height: 30rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 1.5rem 4rem rgba(#000, 0.3);
+
+    backface-visibility: hidden;
+    transition: all 1.5s ease;
+
+    &.front {
+      color: var(--color-text-dark);
+      background-image: linear-gradient(to bottom, #547ab0, #f0f4fa);
+    }
+
+    &.back {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      transform: rotateY(180deg);
+      background-image: var(--orange-gradient);
+    }
+  }
+
+  &:hover .side.front {
+    cursor: pointer;
+    transform: rotateY(-180deg);
+  }
+
+  &:hover .side.back {
+    transform: rotateY(0);
+  }
+}
