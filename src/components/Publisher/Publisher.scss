@@ -3,7 +3,20 @@
     width: 3rem;
     height: 3rem;
     display: block;
-    border: 1px solid magenta;
+    margin: 0 auto;
+    padding: 1rem;
+    font-size: 3.5em;
+    line-height: 1;
+    cursor: pointer;
+    transition: all 1s ease-out;
+    transform-origin: right;
+    background-image: linear-gradient(to bottom, #547ab0, #f0f4fa);
+    border: 2px solid white;
+
+    &:hover {
+      opacity: 0.78;
+      font-size: 4em;
+    }
   }
 
   button {
@@ -14,13 +27,12 @@
     color: white;
     display: block;
     appearance: none;
-    margin-top: 40px;
-    margin-bottom: 20px;
+    margin-bottom: 1.2rem;
     border: 1px solid #333;
     border-radius: 4px;
     transition: 0.3s border-radius;
     text-transform: uppercase;
-    padding: 10px 20px;
+    padding: 0.7rem 1.2rem;
     -webkit-appearance: none;
   }
 

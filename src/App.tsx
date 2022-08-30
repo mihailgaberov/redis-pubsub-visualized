@@ -7,9 +7,9 @@ function App() {
   return (
     <div className="app">
       <section className="publishers">
-        {["weather", "sport", "music"].map((channel) => (
+        {["⛅", "🤾‍♀️", "🎶"].map((channel) => (
           <Publisher
-            iconClassName={channel}
+            icon={channel}
             publishCallback={() => console.log(">>> publish")}
           />
         ))}

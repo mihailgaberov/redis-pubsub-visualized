@@ -3,16 +3,16 @@ import { FunctionComponent, MouseEventHandler } from "react";
 import "./Publisher.scss";
 
 interface PublisherProps {
-  iconClassName: string;
+  icon: string;
   publishCallback: MouseEventHandler<HTMLButtonElement>;
 }
 
 export const Publisher: FunctionComponent<PublisherProps> = ({
-  iconClassName,
+  icon,
   publishCallback,
 }) => (
   <div className="publisher">
-    <i className={`icon ${iconClassName}`} />
+    <i className="icon">{icon}</i>
     <button onClick={publishCallback}>PUBLISH</button>
   </div>
 );
