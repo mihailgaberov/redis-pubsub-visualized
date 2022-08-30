@@ -6,16 +6,19 @@ import { Publisher } from "./components/Publisher";
 function App() {
   return (
     <div className="app">
-      {["weather", "sport", "music"].map((channel) => (
-        <Publisher
-          iconClassName={channel}
-          publishCallback={() => console.log(">>> publish")}
-        />
-      ))}
-
-      {[1, 3, 4].map((n) => (
-        <Subscriber data={n} />
-      ))}
+      <section className="publishers">
+        {["weather", "sport", "music"].map((channel) => (
+          <Publisher
+            iconClassName={channel}
+            publishCallback={() => console.log(">>> publish")}
+          />
+        ))}
+      </section>
+      <section className="subscribers">
+        {[1, 3, 4].map((n) => (
+          <Subscriber data={n} />
+        ))}
+      </section>
     </div>
   );
 }

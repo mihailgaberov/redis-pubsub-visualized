@@ -2,73 +2,42 @@
   .icon {
     width: 3rem;
     height: 3rem;
+    display: block;
     border: 1px solid magenta;
   }
 
-  button[type="submit"],
-  input[type="submit"] {
-    background: #ec5990;
-    color: white;
-    text-transform: uppercase;
-    border: none;
-    margin-top: 40px;
-    padding: 20px;
+  button {
     font-size: 16px;
     font-weight: 100;
     letter-spacing: 10px;
+    background: #333;
+    color: white;
+    display: block;
+    appearance: none;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    border: 1px solid #333;
+    border-radius: 4px;
+    transition: 0.3s border-radius;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    -webkit-appearance: none;
   }
 
-  button[type="submit"]:hover,
-  input[type="submit"]:hover {
+  button:hover {
     background: #bf1650;
+    border-radius: 40px;
+    transition: 0.3s all;
   }
 
-  button[type="submit"]:active,
-  input[type="button"]:active,
-  input[type="submit"]:active {
+  button:active {
     transition: 0.3s all;
     transform: translateY(3px);
     border: 1px solid transparent;
     opacity: 0.8;
   }
 
-  input:disabled {
+  button:disabled {
     opacity: 0.4;
-  }
-
-  input[type="button"]:hover {
-    transition: 0.3s all;
-  }
-
-  button[type="submit"],
-  input[type="button"],
-  input[type="submit"] {
-    -webkit-appearance: none;
-  }
-
-  button[type="button"] {
-    display: block;
-    appearance: none;
-    background: #333;
-    color: white;
-    border: none;
-    text-transform: uppercase;
-    padding: 10px 20px;
-    border-radius: 4px;
-  }
-
-  hr {
-    margin-top: 30px;
-  }
-
-  button {
-    display: block;
-    appearance: none;
-    margin-top: 40px;
-    border: 1px solid #333;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-    padding: 10px 20px;
-    border-radius: 4px;
   }
 }

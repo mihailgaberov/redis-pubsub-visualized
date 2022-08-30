@@ -1,5 +1,7 @@
 import { FunctionComponent, MouseEventHandler } from "react";
 
+import "./Publisher.scss";
+
 interface PublisherProps {
   iconClassName: string;
   publishCallback: MouseEventHandler<HTMLButtonElement>;
