@@ -8,7 +8,9 @@ interface SubscriberProps {
 export const Subscriber: FunctionComponent<SubscriberProps> = ({ data }) => {
   return (
     <div className="subscriber">
-      <div className="side front">{data}</div>
+      <div className="side front">
+        <h1>{data}</h1>
+      </div>
 
       <div className="side back"></div>
     </div>
