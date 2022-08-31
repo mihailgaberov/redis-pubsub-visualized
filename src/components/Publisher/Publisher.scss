@@ -8,15 +8,15 @@
     font-size: 3.5em;
     line-height: 1;
     cursor: pointer;
-    transition: all 0.3s ease-out;
-    transform-origin: right;
     background-image: linear-gradient(to bottom, #547ab0, #f0f4fa);
+    transition: 0.3s ease-out all;
     border: 2px solid white;
     border-radius: 0.5rem;
 
     &:hover {
       opacity: 0.78;
       font-size: 4em;
+      background-image: var(--orange-gradient);
     }
   }
 
