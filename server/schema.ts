@@ -25,5 +25,4 @@ const schema = gql`
     music: Music
   }
 `;
-
-module.exports = schema;
+export default schema;

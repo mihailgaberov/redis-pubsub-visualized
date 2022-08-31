@@ -8,7 +8,7 @@ const CHANNELS = {
   MUSIC: "music",
 };
 
-module.exports = {
+export default {
   Query: {
     weather: () => get(CHANNELS.WEATHER),
     sport: () => get(CHANNELS.SPORT),
