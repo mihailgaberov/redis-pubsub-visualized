@@ -1,7 +1,7 @@
-import { useState } from "react";
 import { Subscriber } from "./components/Subscriber";
 import "./App.scss";
 import { Publisher } from "./components/Publisher";
+import React from "react";
 
 function App() {
   return (
