@@ -13,6 +13,21 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+
+  --color-border: #2f4f4f;
+  --color-text-light: #fafafa;
+  --color-text-dark: #313131;
+  --color-temp-cold-blue: #1184e8;
+  --color-temp-hot-red: #ff3d3d;
+  --color-card-back-primary: #ffb900;
+  --color-card-back-secondary: #ff7730;
+  --orange-gradient: linear-gradient(
+    to right bottom,
+    var(--color-card-back-primary),
+    var(--color-card-back-secondary)
+  );
+  --letter-spacing: 0.1rem;
+  --margin-bottom: 3rem;
 }
 
 a {
