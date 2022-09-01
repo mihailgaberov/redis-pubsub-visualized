@@ -1,8 +1,17 @@
-import Redis from "ioredis";
+import Redis, { RedisKey } from "ioredis";
+import dotenv from "dotenv";
 
-const redis = new Redis();
+dotenv.config();
 
-export const get = async (key: Redis.KeyType) => {
+const redis = new Redis({
+  port: Number(process.env.REDIS_PORT),
+  host: process.env.REDIS_HOST,
+  username: process.env.REDIS_USER,
+  password: process.env.REDIS_PASS,
+  db: 0,
+});
+
+export const get = async (key: RedisKey) => {
   try {
     const data: any = await redis.get(key);
     return JSON.parse(data);
@@ -11,7 +20,7 @@ export const get = async (key: Redis.KeyType) => {
   }
 };
 
-export const set = async (key: Redis.KeyType, data: any) => {
+export const set = async (key: RedisKey, data: any) => {
   try {
     await redis.set(key, JSON.stringify(data));
     return true;
