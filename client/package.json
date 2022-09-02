@@ -1,7 +1,7 @@
 {
   "name": "redis-pub-sub-visualizer",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "author": "Mihail Gaberov <mihail.gaberov@gmail.com>",
   "scripts": {

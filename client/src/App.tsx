@@ -3,7 +3,7 @@ import { Subscriber } from "./components/Subscriber";
 import { Publisher } from "./components/Publisher";
 import { ApolloClient } from "apollo-client";
 import { InMemoryCache } from "apollo-cache-inmemory";
-import { ApolloProvider } from "react-apollo";
+import { ApolloProvider, useQuery } from "react-apollo";
 import { split } from "apollo-link";
 import { HttpLink } from "apollo-link-http";
 import { WebSocketLink } from "apollo-link-ws";
@@ -44,16 +44,22 @@ function App() {
     <ApolloProvider client={client}>
       <div className="app">
         <section className="publishers">
-          {["⛅", "🤾‍♀️", "🎶"].map((channel) => (
+          {[
+            { name: "weather", icon: "⛅" },
+            { name: "sport", icon: "🤾‍♀️" },
+            { name: "music", icon: "🎶" },
+          ].map((channel, idx) => (
             <Publisher
-              icon={channel}
+              key={idx}
+              icon={channel.icon}
+              name={channel.name}
               publishCallback={() => console.log(">>> publish")}
             />
           ))}
         </section>
         <section className="subscribers">
           {[1, 2, 3].map((n) => (
-            <Subscriber subscriberNo={n} />
+            <Subscriber key={n} subscriberNo={n} />
           ))}
         </section>
       </div>
