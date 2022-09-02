@@ -36,6 +36,41 @@
       align-items: center;
       transform: rotateY(180deg);
       background-image: var(--orange-gradient);
+
+      button {
+        width: 16rem;
+        font-size: 1.4em;
+
+        letter-spacing: 10px;
+        border: 1px solid #333;
+        border-radius: 0.5rem;
+        padding: 1rem;
+        transition: 0.3s border-radius;
+
+        sup {
+          font-size: 0.8em;
+          font-weight: 100;
+        }
+
+        &:hover:not(:disabled) {
+          background: #bf1650;
+          color: white;
+          border-radius: 40px;
+          transition: 0.3s all;
+        }
+
+        &:active:not(:disabled) {
+          transition: 0.3s all;
+          transform: translateY(3px);
+          border: 1px solid transparent;
+          opacity: 0.8;
+        }
+
+        &:disabled {
+          opacity: 0.4;
+          cursor: not-allowed;
+        }
+      }
     }
   }
 
