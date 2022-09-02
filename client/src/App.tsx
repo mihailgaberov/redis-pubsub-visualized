@@ -52,8 +52,8 @@ function App() {
           ))}
         </section>
         <section className="subscribers">
-          {[1, 3, 4].map((n) => (
-            <Subscriber data={n} />
+          {[1, 2, 3].map((n) => (
+            <Subscriber subscriberNo={n} />
           ))}
         </section>
       </div>

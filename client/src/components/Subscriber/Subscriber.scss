@@ -20,6 +20,13 @@
     &.front {
       color: var(--color-text-dark);
       background-image: linear-gradient(to bottom, #547ab0, #f0f4fa);
+
+      h3 {
+        color: white;
+        display: flex;
+        justify-content: center;
+        font-weight: 200;
+      }
     }
 
     &.back {
