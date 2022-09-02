@@ -1,11 +1,17 @@
 import pubsub from "./pubsub";
 
-import { get } from "./utils/redis";
+import { get, set } from "./utils/redis";
 
 const CHANNELS = {
   WEATHER: "weather",
   SPORT: "sport",
   MUSIC: "music",
+};
+
+const publishData = async (data: Object, channel: string) => {
+  pubsub.publish(channel, { [channel]: data });
+  await set(channel, data);
+  return data;
 };
 
 export default {
@@ -24,5 +30,19 @@ export default {
     music: {
       subscribe: () => pubsub.asyncIterator(CHANNELS.MUSIC),
     },
+  },
+  Mutation: {
+    weather: () =>
+      publishData({ icon: "🌧", text: "Raining men" }, CHANNELS.WEATHER),
+    sport: () =>
+      publishData(
+        { icon: "⚽️", text: "Barcelona vs Munich: 3 : 1" },
+        CHANNELS.SPORT
+      ),
+    music: () =>
+      publishData(
+        { icon: "🎤", text: "Jovi having new concert" },
+        CHANNELS.MUSIC
+      ),
   },
 };
