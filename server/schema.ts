@@ -2,15 +2,18 @@ import { gql } from "apollo-server";
 
 const schema = gql`
   type Weather {
-    value: String!
+    icon: String
+    text: String!
   }
 
   type Sport {
-    value: String!
+    icon: String
+    text: String!
   }
 
   type Music {
-    value: String!
+    icon: String
+    text: String!
   }
 
   type Query {
@@ -20,6 +23,12 @@ const schema = gql`
   }
 
   type Subscription {
+    weather: Weather
+    sport: Sport
+    music: Music
+  }
+
+  type Mutation {
     weather: Weather
     sport: Sport
     music: Music
