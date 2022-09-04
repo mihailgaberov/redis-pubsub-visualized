@@ -27,9 +27,9 @@ const WEATHER_QUERY = gql`
 export const Subscriber: FunctionComponent<SubscriberProps> = ({
   subscriberNo,
 }) => {
-  const { data, loading, error, subscribeToMore } = useQuery(WEATHER_QUERY);
+  const { loading, error, subscribeToMore } = useQuery(WEATHER_QUERY);
 
-  const [currentNews, setCurrentNews] = useState();
+  const [currentNews, setCurrentNews] = useState({ data: {} });
 
   /* {
     "music": {
@@ -46,7 +46,7 @@ export const Subscriber: FunctionComponent<SubscriberProps> = ({
     <div className="subscriber">
       <div className="side front">
         <h3>Subscriber #{subscriberNo}</h3>
-        <section>{[currentNews]}</section>
+        <section>{currentNews}</section>
       </div>
       <div className="side back">
         <SubscribeButton

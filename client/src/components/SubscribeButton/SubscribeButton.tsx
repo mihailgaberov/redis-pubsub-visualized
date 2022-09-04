@@ -54,7 +54,7 @@ function subscribeTo(
       console.log(">>> subscriptionData: ", subscriptionData.data);
       if (!subscriptionData.data) return prev;
 
-      processDataCallback(subscriptionData.data);
+      processDataCallback(subscriptionData);
       return subscriptionData.data;
     },
   });
