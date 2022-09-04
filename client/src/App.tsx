@@ -47,12 +47,7 @@ function App() {
             { name: "sport", icon: "🤾‍♀️" },
             { name: "music", icon: "🎶" },
           ].map((channel, idx) => (
-            <Publisher
-              key={idx}
-              icon={channel.icon}
-              name={channel.name}
-              publishCallback={() => console.log(">>> publish")}
-            />
+            <Publisher key={idx} icon={channel.icon} name={channel.name} />
           ))}
         </section>
         <section className="subscribers">

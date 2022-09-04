@@ -6,12 +6,29 @@ import "./Publisher.scss";
 interface PublisherProps {
   icon: string;
   name: string;
-  publishCallback: MouseEventHandler<HTMLButtonElement>;
 }
 
-const CREATE_PUBLICATION = gql`
-  mutation CreateWeatherPublication {
+const WEATHER_PUBLISH = gql`
+  mutation Weather {
     weather {
+      icon
+      text
+    }
+  }
+`;
+
+const SPORT_PUBLISH = gql`
+  mutation Sport {
+    sport {
+      icon
+      text
+    }
+  }
+`;
+
+const MUSIC_PUBLISH = gql`
+  mutation Music {
+    music {
       icon
       text
     }
@@ -20,17 +37,26 @@ const CREATE_PUBLICATION = gql`
 
 export const Publisher: FunctionComponent<PublisherProps> = ({
   icon,
-  publishCallback,
+  name,
 }) => {
-  const [publish, { loading, error }] = useMutation(CREATE_PUBLICATION);
+  const [publishWeather] = useMutation(WEATHER_PUBLISH);
+  const [publishSport] = useMutation(SPORT_PUBLISH);
+  const [publishMusic] = useMutation(MUSIC_PUBLISH);
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error!</div>;
+  const mapNameToPublishMethod = {
+    weather: publishWeather,
+    sport: publishSport,
+    music: publishMusic,
+  };
+
+  function publishTo(channel: string) {
+    mapNameToPublishMethod[channel]();
+  }
 
   return (
     <div className="publisher">
       <i className="icon">{icon}</i>
-      <button onClick={() => publish()}>PUBLISH</button>
+      <button onClick={() => publishTo(name)}>PUBLISH</button>
     </div>
   );
 };

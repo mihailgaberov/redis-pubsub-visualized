@@ -39,13 +39,21 @@ const WEATHER_QUERY = gql`
       icon
       text
     }
+    sport {
+      icon
+      text
+    }
+    music {
+      icon
+      text
+    }
   }
 `;
 
 function subscribeTo(subscription, subscribeToMore) {
   subscribeToMore({
     document: subscription,
-    updateQuery: (prev, { subscriptionData }) => {
+    updateQuery: (prev: any, { subscriptionData }) => {
       console.log(">>> subscriptionData: ", subscriptionData.data);
       if (!subscriptionData.data) return prev;
 
@@ -60,8 +68,6 @@ export const Subscriber: FunctionComponent<SubscriberProps> = ({
   const { data, loading, error, subscribeToMore } = useQuery(WEATHER_QUERY);
 
   console.log(">>> data: ", data);
-  console.log(">>> loading", loading);
-  console.log(">>> error: ", error);
 
   if (error) return <div>Error!</div>;
   if (loading) return <div>Loading...</div>;
