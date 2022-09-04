@@ -1,13 +1,11 @@
 import React from "react";
 import { Subscriber } from "./components/Subscriber";
 import { Publisher } from "./components/Publisher";
-import { ApolloClient } from "apollo-client";
-import { InMemoryCache } from "apollo-cache-inmemory";
-import { ApolloProvider, useQuery } from "react-apollo";
-import { split } from "apollo-link";
-import { HttpLink } from "apollo-link-http";
-import { WebSocketLink } from "apollo-link-ws";
+import { ApolloClient } from "@apollo/client";
+import { HttpLink } from "@apollo/client/link/http";
+import { WebSocketLink } from "@apollo/client/link/ws";
 import { getMainDefinition } from "apollo-utilities";
+import { ApolloProvider, split, InMemoryCache } from "@apollo/client";
 
 import "./App.scss";
 

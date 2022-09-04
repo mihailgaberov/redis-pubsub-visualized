@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@apollo/client": "^3.6.9",
     "apollo-boost": "^0.4.9",
     "apollo-client": "^2.6.10",
     "apollo-link-ws": "^1.0.20",

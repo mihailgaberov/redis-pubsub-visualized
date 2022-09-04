@@ -1,14 +1,12 @@
-import React, { FunctionComponent } from "react";
-import gql from "graphql-tag";
-
+import React, { FunctionComponent, useEffect, useState } from "react";
+import { useQuery, gql } from "@apollo/client";
 import "./Subscriber.scss";
-import { useQuery, useSubscription } from "react-apollo";
 
 interface SubscriberProps {
   subscriberNo: number;
 }
 
-const SUBSCRIBE_WEATHER = gql`
+const WEATHER_SUBSCRIBE = gql`
   subscription Weather {
     weather {
       icon
@@ -17,19 +15,56 @@ const SUBSCRIBE_WEATHER = gql`
   }
 `;
 
+const SPORT_SUBSCRIBE = gql`
+  subscription Sport {
+    sport {
+      icon
+      text
+    }
+  }
+`;
+
+const MUSIC_SUBSCRIBE = gql`
+  subscription Music {
+    music {
+      icon
+      text
+    }
+  }
+`;
+
+const WEATHER_QUERY = gql`
+  query Weather {
+    weather {
+      icon
+      text
+    }
+  }
+`;
+
+function subscribeTo(subscription, subscribeToMore) {
+  subscribeToMore({
+    document: subscription,
+    updateQuery: (prev, { subscriptionData }) => {
+      console.log(">>> subscriptionData: ", subscriptionData.data);
+      if (!subscriptionData.data) return prev;
+
+      return subscriptionData.data;
+    },
+  });
+}
+
 export const Subscriber: FunctionComponent<SubscriberProps> = ({
   subscriberNo,
 }) => {
-  const { loading, error, data } = useSubscription(SUBSCRIBE_WEATHER, {
-    onSubscriptionData: (data) => console.log(">>> new data", data),
-  });
+  const { data, loading, error, subscribeToMore } = useQuery(WEATHER_QUERY);
 
   console.log(">>> data: ", data);
-  console.log(">>> loading: ", loading);
+  console.log(">>> loading", loading);
   console.log(">>> error: ", error);
 
-  // if (loading) return <div>Loading...</div>;
   if (error) return <div>Error!</div>;
+  if (loading) return <div>Loading...</div>;
 
   return (
     <div className="subscriber">
@@ -40,18 +75,29 @@ export const Subscriber: FunctionComponent<SubscriberProps> = ({
         <button
           onClick={() => {
             console.log(">>> Subscribe for weather");
+            subscribeTo(WEATHER_SUBSCRIBE, subscribeToMore);
           }}
         >
           <sup>Subscribe for</sup>
           <br />
           Weather
         </button>
-        <button onClick={() => console.log(">>> Subscribe for sport")}>
+        <button
+          onClick={() => {
+            console.log(">>> Subscribe for sport");
+            subscribeTo(SPORT_SUBSCRIBE, subscribeToMore);
+          }}
+        >
           <sup>Subscribe for</sup>
           <br />
           Sport
         </button>
-        <button disabled onClick={() => console.log(">>> Subscribe for music")}>
+        <button
+          onClick={() => {
+            console.log(">>> Subscribe for music");
+            subscribeTo(MUSIC_SUBSCRIBE, subscribeToMore);
+          }}
+        >
           <sup>Subscribe for</sup>
           <br />
           Music

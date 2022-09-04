@@ -1,8 +1,7 @@
 import React, { FunctionComponent, MouseEventHandler } from "react";
-import gql from "graphql-tag";
+import { useMutation, gql } from "@apollo/client";
 
 import "./Publisher.scss";
-import { useMutation } from "react-apollo";
 
 interface PublisherProps {
   icon: string;
