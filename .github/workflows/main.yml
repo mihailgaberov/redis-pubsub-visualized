@@ -34,11 +34,3 @@ jobs:
         cache-dependency-path: client/yarn.lock
     - run: yarn
     - run: yarn build
-    - name: Build Server (Use Node.js ${{ matrix.node-version }})
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-        cache-dependency-path: server/yarn.lock
-    - run: yarn
-    - run: yarn start
