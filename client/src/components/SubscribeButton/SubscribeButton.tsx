@@ -47,14 +47,12 @@ function subscribeTo(
   subscribeToMore: Function,
   processDataCallback
 ): Function {
-  console.log(">>> subscribeTo called for title: ", channelTitle);
   const unsubscribe = subscribeToMore({
     document: mapTitleToSubscription[channelTitle],
     updateQuery: (prev: any, { subscriptionData }) => {
-      console.log(">>> subscriptionData: ", subscriptionData.data);
       if (!subscriptionData.data) return prev;
 
-      processDataCallback(subscriptionData);
+      processDataCallback(subscriptionData.data);
       return subscriptionData.data;
     },
   });

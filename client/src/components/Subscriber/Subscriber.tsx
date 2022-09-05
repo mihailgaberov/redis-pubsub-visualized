@@ -1,8 +1,13 @@
-import React, { FunctionComponent, useEffect, useState } from "react";
-import { useQuery, gql, DocumentNode } from "@apollo/client";
-import "./Subscriber.scss";
+import React, {
+  FunctionComponent,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
+import { useQuery, gql } from "@apollo/client";
 import { SubscribeButton } from "../SubscribeButton";
 
+import "./Subscriber.scss";
 interface SubscriberProps {
   subscriberNo: number;
 }
@@ -23,22 +28,54 @@ const WEATHER_QUERY = gql`
     }
   }
 `;
+interface InitialState {
+  channelName: string;
+  icon: string;
+  text: string;
+}
+
+const initialState: InitialState = {
+  channelName: "",
+  icon: "",
+  text: "",
+};
+
+function PrepareNewsDataReducer(
+  state: InitialState,
+  action: { data: {}; type: string }
+) {
+  const data = action.data;
+
+  switch (action.type) {
+    case "UPDATE":
+      const channelName = Object.getOwnPropertyNames(data)[0];
+
+      return {
+        channelName,
+        icon: data[channelName].icon,
+        text: data[channelName].text,
+      };
+    default:
+      return state;
+  }
+}
 
 export const Subscriber: FunctionComponent<SubscriberProps> = ({
   subscriberNo,
 }) => {
   const { loading, error, subscribeToMore } = useQuery(WEATHER_QUERY);
 
-  const [currentNews, setCurrentNews] = useState({ data: {} });
+  const [currentNews, setCurrentNews] = useState();
+  const [currentShow, dispatch] = useReducer(
+    PrepareNewsDataReducer,
+    initialState
+  );
 
-  /* {
-    "music": {
-        "icon": "🎤",
-        "text": "Jovi having new concert",
-        "__typename": "Music"
+  useEffect(() => {
+    if (currentNews) {
+      dispatch({ type: "UPDATE", data: currentNews });
     }
-} */
-  console.log(">>> currentNews: ", currentNews);
+  }, [currentNews]);
 
   if (error) return <div>Error!</div>;
   if (loading) return <div>Loading...</div>;
@@ -48,10 +85,10 @@ export const Subscriber: FunctionComponent<SubscriberProps> = ({
       <div className="side front">
         <h3>Subscriber #{subscriberNo}</h3>
         <section className="content">
-          <header>Music</header>
+          <header>{currentShow.channelName.toUpperCase()}</header>
           <main>
-            <div>🎙️</div>
-            <div>Jovi having new concert</div>
+            <div>{currentShow.icon}</div>
+            <div>{currentShow.text}</div>
           </main>
         </section>
       </div>
