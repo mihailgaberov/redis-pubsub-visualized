@@ -93,14 +93,14 @@ export const SubscribeButton: FunctionComponent<SubscribeButtonProps> = ({
   return (
     <>
       {!unSubscribeHandlers.get(channelName) && (
-        <button onClick={() => subscribe()}>
+        <button className="subscribe-btn" onClick={() => subscribe()}>
           <sup>Subscribe for</sup>
           <br />
           {channelName}
         </button>
       )}
       {unSubscribeHandlers.get(channelName) && (
-        <button onClick={() => unSubscribe()}>
+        <button className="subscribe-btn" onClick={() => unSubscribe()}>
           <sup>Unsubscribe for</sup>
           <br />
           {channelName}

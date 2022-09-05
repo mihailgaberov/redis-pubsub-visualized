@@ -38,6 +38,7 @@ export const Subscriber: FunctionComponent<SubscriberProps> = ({
         "__typename": "Music"
     }
 } */
+  console.log(">>> currentNews: ", currentNews);
 
   if (error) return <div>Error!</div>;
   if (loading) return <div>Loading...</div>;
@@ -46,7 +47,13 @@ export const Subscriber: FunctionComponent<SubscriberProps> = ({
     <div className="subscriber">
       <div className="side front">
         <h3>Subscriber #{subscriberNo}</h3>
-        <section>{currentNews}</section>
+        <section className="content">
+          <header>Music</header>
+          <main>
+            <div>🎙️</div>
+            <div>Jovi having new concert</div>
+          </main>
+        </section>
       </div>
       <div className="side back">
         <SubscribeButton
