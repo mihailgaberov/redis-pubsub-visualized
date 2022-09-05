@@ -40,10 +40,15 @@ async function startApolloServer(typeDefs: any, resolvers: any) {
     ],
   });
   await server.start();
+
+  const corsOptions = {
+    origin: ["https://redis-pub-sub-visualized.vercel.app/"],
+  };
+
   server.applyMiddleware({
     app,
-    path: "https://redis-pub-sub-visualized.vercel.app/",
-    cors: false,
+    path: "/graphql",
+    cors: corsOptions,
   });
   await new Promise<void>((resolve) =>
     httpServer.listen({ port: 4000 }, resolve)
