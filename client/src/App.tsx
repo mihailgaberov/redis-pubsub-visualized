@@ -14,7 +14,7 @@ const httpLink = new HttpLink({
 });
 
 const wsLink = new WebSocketLink({
-  uri: `ws://redis-pubsub-viz-server.herokuapp.com:4000/graphql`,
+  uri: `wss://redis-pubsub-viz-server.herokuapp.com:4000/graphql`,
   options: {
     reconnect: true,
   },

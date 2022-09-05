@@ -10,6 +10,8 @@ const server = new ApolloServer({
   introspection: true,
 });
 
+server.applyMiddleware();
+
 server.listen().then(({ url }) => {
   console.log(`🚀  Server ready at ${url}`);
 });
