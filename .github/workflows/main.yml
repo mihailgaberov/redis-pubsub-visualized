@@ -31,5 +31,6 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+        cache-dependency-path: client/yarn.lock`
     - run: yarn
     - run: yarn build --if-present
