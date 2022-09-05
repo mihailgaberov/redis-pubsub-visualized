@@ -41,4 +41,4 @@ jobs:
         cache: 'npm'
         cache-dependency-path: server/yarn.lock
     - run: yarn
-    - run: yarn build
+    - run: yarn start
