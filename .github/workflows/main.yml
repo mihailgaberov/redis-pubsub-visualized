@@ -14,6 +14,10 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: client
 
     strategy:
       matrix:
@@ -21,14 +25,11 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - run: cd ./client
     - uses: actions/checkout@v3
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - name: GitHub Action for Yarn
-      uses: Borales/actions-yarn@v3
     - run: yarn
     - run: yarn build --if-present
