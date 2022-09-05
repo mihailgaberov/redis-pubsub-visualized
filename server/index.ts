@@ -26,7 +26,7 @@ import http from "http";
 import typeDefs from "./schema";
 import resolvers from "./resolvers";
 
-async function startApolloServer(typeDefs: any, resolvers: any) {
+(async () => {
   const app = express();
   const httpServer = http.createServer(app);
   const server = new ApolloServer({
@@ -54,4 +54,4 @@ async function startApolloServer(typeDefs: any, resolvers: any) {
     httpServer.listen({ port: 4000 }, resolve)
   );
   console.log(`🚀 Server ready at ${server.graphqlPath}`);
-}
+})();
