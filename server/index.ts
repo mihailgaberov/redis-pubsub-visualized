@@ -47,7 +47,7 @@ import resolvers from "./resolvers";
 
   server.applyMiddleware({
     app,
-    path: "/graphql",
+    path: "https://redis-pubsub-viz-server.herokuapp.com:4000/graphql",
     cors: corsOptions,
   });
   await new Promise<void>((resolve) =>
