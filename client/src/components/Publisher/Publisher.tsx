@@ -55,7 +55,9 @@ export const Publisher: FunctionComponent<PublisherProps> = ({
 
   return (
     <div className="publisher">
-      <i className="icon">{icon}</i>
+      <i className="icon" onClick={() => publishTo(name)}>
+        {icon}
+      </i>
       <button onClick={() => publishTo(name)}>PUBLISH</button>
     </div>
   );
