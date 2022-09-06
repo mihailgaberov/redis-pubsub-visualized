@@ -8,13 +8,9 @@ const password: string = process.env.REDIS_PASSWORD ?? "";
 const host: string = process.env.REDIS_HOST ?? "";
 const port: string = process.env.REDIS_PORT ?? "";
 
-const client = new Redis({
-  port: Number(process.env.REDIS_PORT),
-  host: process.env.REDIS_HOST,
-  username: process.env.REDIS_USER,
-  password: process.env.REDIS_PASSWORD,
-  db: 0,
-});
+const client = new Redis(
+  `redis://:37qwOYGH9LYoctPgFxMhLLi7BwnaHGBr@redis-14177.c15.us-east-1-4.ec2.cloud.redislabs.com:14177`
+);
 
 console.log(">>> host: ", host);
 console.log(">>> port: ", port);
