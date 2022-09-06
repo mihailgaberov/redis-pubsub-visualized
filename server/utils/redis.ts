@@ -1,28 +1,49 @@
-import Redis, { RedisKey } from "ioredis";
+// import Redis, { RedisKey } from "ioredis";
+import { createClient } from "redis";
 import dotenv from "dotenv";
 
 dotenv.config();
+// const redis = new Redis({
+//   port: Number(process.env.REDIS_PORT),
+//   host: process.env.REDIS_HOST,
+//   username: process.env.REDIS_USER,
+//   password: process.env.REDIS_PASSWORD,
+//   db: 0,
+// });
+const username: string = process.env.REDIS_USER ?? "";
+const password: string = process.env.REDIS_PASSWORD ?? "";
+const host: string = process.env.REDIS_HOST ?? "";
+const port: string = process.env.REDIS_PORT ?? "";
 
-const redis = new Redis({
-  port: Number(process.env.REDIS_PORT),
-  host: process.env.REDIS_HOST,
-  username: process.env.REDIS_USER,
-  password: process.env.REDIS_PASSWORD,
-  db: 0,
+console.log(">>> host: ", host);
+console.log(">>> port: ", port);
+console.log(">>> username: ", username);
+console.log(">>> password: ", password);
+
+const client = createClient({
+  url: `redis://${username}:${password}@${host}:${port}`,
 });
 
-export const get = async (key: RedisKey) => {
+client.on("error", (err) => console.log("Redis Client Error", err));
+
+(async () => {
+  await client.connect();
+})();
+// await client.set("key", "value");
+// const value = await client.get("key");
+
+export const get = async (key: any) => {
   try {
-    const data: any = await redis.get(key);
+    const data: any = await client.get(key);
     return JSON.parse(data);
   } catch (e) {
     return null;
   }
 };
 
-export const set = async (key: RedisKey, data: any) => {
+export const set = async (key: any, data: any) => {
   try {
-    await redis.set(key, JSON.stringify(data));
+    await client.set(key, JSON.stringify(data));
     return true;
   } catch (e) {
     return false;
