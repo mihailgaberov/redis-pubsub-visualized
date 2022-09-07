@@ -45,7 +45,7 @@ const mapTitleToSubscription = {
 function subscribeTo(
   channelTitle: string,
   subscribeToMore: Function,
-  processDataCallback
+  processDataCallback: Function
 ): Function {
   const unsubscribe = subscribeToMore({
     document: mapTitleToSubscription[channelTitle],
