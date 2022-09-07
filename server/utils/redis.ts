@@ -1,31 +1,20 @@
-import Redis from "ioredis";
-// import { createClient } from "redis";
 import dotenv from "dotenv";
+import Redis from "ioredis";
 dotenv.config();
 
 const username: string = process.env.REDIS_USER ?? "";
 const password: string = process.env.REDIS_PASSWORD ?? "";
 const host: string = process.env.REDIS_HOST ?? "";
-const port: string = process.env.REDIS_PORT ?? "";
+const port: number = Number(process.env.REDIS_PORT) ?? 6376;
 
-const client = new Redis(
-  `redis://:37qwOYGH9LYoctPgFxMhLLi7BwnaHGBr@redis-14177.c15.us-east-1-4.ec2.cloud.redislabs.com:14177`
-);
+const client = new Redis({
+  port: port,
+  host: host,
+  username: username,
+  password: password,
+  connectionName: "Migelito",
+});
 
-console.log(">>> host: ", host);
-console.log(">>> port: ", port);
-console.log(">>> username: ", username);
-console.log(">>> password: ", password);
-
-// const client = createClient({
-//   url: `redis://${username}:${password}@${host}:${port}`,
-// });
-
-// client.on("error", (err) => console.log("Redis Client Error", err));
-
-// (async () => {
-//   await client.connect();
-// })();
 export const get = async (key: any) => {
   try {
     const data: any = await client.get(key);

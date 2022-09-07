@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect, useRef, useState } from "react";
+import React, { FunctionComponent, useState } from "react";
 import { gql } from "@apollo/client";
 
 import "./SubscribeButton.scss";

@@ -1,24 +1,36 @@
 import React from "react";
+import {
+  ApolloClient,
+  ApolloProvider,
+  InMemoryCache,
+  split,
+  HttpLink,
+} from "@apollo/client";
+import { getMainDefinition } from "@apollo/client/utilities";
+// import { WebSocketLink } from "@apollo/client/link/ws";
+// import { SubscriptionClient } from "subscriptions-transport-ws";
+import { GraphQLWsLink } from "@apollo/client/link/subscriptions";
+import { createClient } from "graphql-ws";
+
 import { Subscriber } from "./components/Subscriber";
 import { Publisher } from "./components/Publisher";
-import { ApolloClient } from "@apollo/client";
-import { HttpLink } from "@apollo/client/link/http";
-import { WebSocketLink } from "@apollo/client/link/ws";
-import { getMainDefinition } from "apollo-utilities";
-import { ApolloProvider, split, InMemoryCache } from "@apollo/client";
 
 import "./App.scss";
 
 const httpLink = new HttpLink({
-  uri: "https://redis-pubsub-viz-server.herokuapp.com:4000",
+  uri: "http://localhost:4000/graphql",
 });
 
-const wsLink = new WebSocketLink({
-  uri: `wss://redis-pubsub-viz-server.herokuapp.com:4000/graphql`,
-  options: {
-    reconnect: true,
-  },
-});
+// const wsLink = new WebSocketLink(
+//   new SubscriptionClient("ws://localhost:4000/graphql", {
+//     reconnect: true,
+//   })
+// );
+const wsLink = new GraphQLWsLink(
+  createClient({
+    url: "ws://localhost:4000/subscriptions",
+  })
+);
 
 const link = split(
   ({ query }) => {
