@@ -1,1 +1,1 @@
-web:yarn start && redis-server
+web:redis-server && yarn start
