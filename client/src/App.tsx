@@ -9,18 +9,12 @@ import {
 import { getMainDefinition } from "@apollo/client/utilities";
 import { GraphQLWsLink } from "@apollo/client/link/subscriptions";
 import { createClient } from "graphql-ws";
-
 import { Subscriber } from "./components/Subscriber";
 import { Publisher } from "./components/Publisher";
-import dotenv from "dotenv";
-dotenv.config();
-
 import "./App.scss";
 
-const {
-  SERVER_HTTP_LINK = "http://localhost:4000/graphql",
-  SERVER_WS_LINK = "ws://localhost:4000/graphql",
-} = process.env;
+const SERVER_HTTP_LINK = import.meta.env.VITE_SERVER_HTTP_LINK;
+const SERVER_WS_LINK = import.meta.env.VITE_SERVER_WS_LINK;
 
 const httpLink = new HttpLink({
   uri: SERVER_HTTP_LINK,
