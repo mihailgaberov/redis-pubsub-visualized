@@ -15,10 +15,12 @@ import typeDefs from "./schema";
   const schema = makeExecutableSchema({ typeDefs, resolvers });
   const app = express();
   const httpServer = createServer(app);
+  const PORT = 4000;
 
   const wsServer = new WebSocketServer({
     server: httpServer,
     path: "/graphql",
+    port: PORT,
   });
 
   const serverCleanup = useServer({ schema }, wsServer);
@@ -44,10 +46,7 @@ import typeDefs from "./schema";
   await server.start();
   server.applyMiddleware({ app });
 
-  const PORT = 4000;
   httpServer.listen(PORT, () => {
-    console.log(
-      `Server is now running on http://localhost:${PORT}${server.graphqlPath}`
-    );
+    console.log(`Server is now running on :${PORT}${server.graphqlPath}`);
   });
 })();
