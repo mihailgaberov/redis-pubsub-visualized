@@ -12,16 +12,23 @@ import { createClient } from "graphql-ws";
 
 import { Subscriber } from "./components/Subscriber";
 import { Publisher } from "./components/Publisher";
+import dotenv from "dotenv";
+dotenv.config();
 
 import "./App.scss";
 
+const {
+  SERVER_HTTP_LINK = "http://localhost:4000/graphql",
+  SERVER_WS_LINK = "ws://localhost:4000/graphql",
+} = process.env;
+
 const httpLink = new HttpLink({
-  uri: "http://localhost:4000/graphql",
+  uri: SERVER_HTTP_LINK,
 });
 
 const wsLink = new GraphQLWsLink(
   createClient({
-    url: "ws://localhost:4000/graphql",
+    url: SERVER_WS_LINK,
   })
 );
 
