@@ -20,7 +20,6 @@ import typeDefs from "./schema";
   const wsServer = new WebSocketServer({
     server: httpServer,
     path: "/graphql",
-    port: PORT,
   });
 
   const serverCleanup = useServer({ schema }, wsServer);
