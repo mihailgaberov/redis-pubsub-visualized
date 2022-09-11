@@ -1,4 +1,5 @@
 const Redis = require("ioredis");
+const dotenv = require("dotenv");
 dotenv.config();
 
 // const username: string = process.env.REDIS_USER ?? "";
