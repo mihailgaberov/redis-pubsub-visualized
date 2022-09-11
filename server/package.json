@@ -1,7 +1,7 @@
 {
   "name": "redis-pub-sub-visualizer-server",
   "version": "1.0.0",
-  "main": "index.ts",
+  "main": "index.js",
   "author": "Mihail Gaberov <mihail.gaberov@gmail.com>",
   "license": "MIT",
   "scripts": {
