@@ -5,7 +5,7 @@
   "author": "Mihail Gaberov <mihail.gaberov@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "redis-server && nodemon index.ts"
+    "start": "nodemon index.ts"
   },
   "dependencies": {
     "@types/ws": "^8.5.3",
