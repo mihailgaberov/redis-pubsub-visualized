@@ -1,0 +1,20 @@
+services:
+  # Create Redis service
+  - type: redis
+    name: ioredis-redis
+    ipAllowList: []
+
+  # Create background worker service
+  - type: worker
+    name: ioredis-worker
+    env: node
+    buildCommand: "yarn"
+    startCommand: "yarn run redis-url"
+    envVars:
+      # Set REDIS_URL environment variable
+      - key: REDIS_URL
+        fromService:
+          name: ioredis-redis
+          type: redis
+          # Use connectionString available from Redis service above
+          property: connectionString
