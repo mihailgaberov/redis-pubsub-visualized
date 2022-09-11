@@ -1,6 +1,6 @@
 const pubsub = require("./pubsub");
 
-const { get, set } = "./utils/redis.js";
+const { get, set } = require("./utils/redis.js");
 
 const CHANNELS = {
   WEATHER: "weather",
