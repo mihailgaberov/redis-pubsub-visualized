@@ -26,19 +26,16 @@ const typeDefs = require("./schema.js");
 
 (async () => {
   const schema = makeExecutableSchema({ typeDefs, resolvers });
-
-  console.log(">>> schema: ", schema);
-
   const app = express();
   const httpServer = createServer(app);
   const PORT = 4000;
 
-  // const wsServer = new WebSocketServer({
-  //   server: httpServer,
-  //   path: "/graphql",
-  // });
+  const wsServer = new WebSocketServer({
+    server: httpServer,
+    path: "/graphql",
+  });
 
-  // const serverCleanup = useServer({ schema }, wsServer);
+  const serverCleanup = useServer({ schema }, wsServer);
 
   const server = new ApolloServer({
     schema,
@@ -46,7 +43,7 @@ const typeDefs = require("./schema.js");
     cache: "bounded",
     plugins: [
       ApolloServerPluginDrainHttpServer({ httpServer }),
-      /* {
+      {
         async serverWillStart() {
           return {
             async drainServer() {
@@ -54,7 +51,7 @@ const typeDefs = require("./schema.js");
             },
           };
         },
-      }, */
+      },
       ApolloServerPluginLandingPageLocalDefault({ embed: true }),
     ],
   });
@@ -65,23 +62,3 @@ const typeDefs = require("./schema.js");
     console.log(`Server is now running on :${PORT}${server.graphqlPath}`);
   });
 })();
-
-/* require("dotenv").config();
-const Redis = require("ioredis");
-
-const { REDIS_URL } = process.env;
-
-// Recommended to use this method for connecting to Render Redis,
-// as this value can be set automatically by Render Blueprints
-
-const renderRedis = new Redis(REDIS_URL);
-console.log("Connected to Render Redis! 🚀");
-
-renderRedis.set("animal", "cat");
-
-renderRedis.get("animal").then((result) => {
-  console.log(`Result for key animal: ${result}`); // Prints "cat"
-});
-
-renderRedis.del("animal");
- */
