@@ -22,7 +22,7 @@ const { makeExecutableSchema } = require("@graphql-tools/schema");
 const { WebSocketServer } = require("ws");
 const { useServer } = require("graphql-ws/lib/use/ws");
 const { resolvers } = require("./resolvers.js");
-const { typeDefs } = require("./schema.js");
+const typeDefs = require("./schema.js");
 
 (async () => {
   const schema = makeExecutableSchema({ typeDefs, resolvers });
