@@ -33,12 +33,12 @@ const typeDefs = require("./schema.js");
   const httpServer = createServer(app);
   const PORT = 4000;
 
-  const wsServer = new WebSocketServer({
-    server: httpServer,
-    path: "/graphql",
-  });
+  // const wsServer = new WebSocketServer({
+  //   server: httpServer,
+  //   path: "/graphql",
+  // });
 
-  const serverCleanup = useServer({ schema }, wsServer);
+  // const serverCleanup = useServer({ schema }, wsServer);
 
   const server = new ApolloServer({
     schema,
@@ -46,7 +46,7 @@ const typeDefs = require("./schema.js");
     cache: "bounded",
     plugins: [
       ApolloServerPluginDrainHttpServer({ httpServer }),
-      {
+      /* {
         async serverWillStart() {
           return {
             async drainServer() {
@@ -54,7 +54,7 @@ const typeDefs = require("./schema.js");
             },
           };
         },
-      },
+      }, */
       ApolloServerPluginLandingPageLocalDefault({ embed: true }),
     ],
   });
