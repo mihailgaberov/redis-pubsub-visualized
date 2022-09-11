@@ -1,8 +1,0 @@
-version: "2.1"
-
-services:
-  redismod:
-    image: redismod
-    build: .
-    ports:
-      - 6379:6379

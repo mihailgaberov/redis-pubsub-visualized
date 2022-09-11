@@ -1,0 +1,12 @@
+version: "2.1"
+
+services:
+  redismod:
+    image: redismod
+    environment:
+      - REDIS_URL=redis://red-ccd0q1pgp3jm91ut8leg
+    expose:
+      - 6379
+    build: ./server
+    ports:
+      - 6379:6379
