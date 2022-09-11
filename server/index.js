@@ -1,4 +1,4 @@
-/* import { ApolloServer } from "apollo-server-express";
+import { ApolloServer } from "apollo-server-express";
 import { createServer } from "http";
 import express from "express";
 import {
@@ -49,9 +49,8 @@ import typeDefs from "./schema";
     console.log(`Server is now running on :${PORT}${server.graphqlPath}`);
   });
 })();
- */
 
-require("dotenv").config();
+/* require("dotenv").config();
 const Redis = require("ioredis");
 
 const { REDIS_URL } = process.env;
@@ -69,3 +68,4 @@ renderRedis.get("animal").then((result) => {
 });
 
 renderRedis.del("animal");
+ */
