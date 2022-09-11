@@ -19,20 +19,22 @@ const {
 
 const client = new Redis(REDIS_URL);
 
-export const get = async (key) => {
-  try {
-    const data = await client.get(key);
-    return JSON.parse(data);
-  } catch (e) {
-    return null;
-  }
-};
+module.exports = {
+  get: async (key) => {
+    try {
+      const data = await client.get(key);
+      return JSON.parse(data);
+    } catch (e) {
+      return null;
+    }
+  },
 
-export const set = async (key, data) => {
-  try {
-    await client.set(key, JSON.stringify(data));
-    return true;
-  } catch (e) {
-    return false;
-  }
+  set: async (key, data) => {
+    try {
+      await client.set(key, JSON.stringify(data));
+      return true;
+    } catch (e) {
+      return false;
+    }
+  },
 };
