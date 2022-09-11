@@ -26,6 +26,9 @@ const typeDefs = require("./schema.js");
 
 (async () => {
   const schema = makeExecutableSchema({ typeDefs, resolvers });
+
+  console.log(">>> schema: ", schema);
+
   const app = express();
   const httpServer = createServer(app);
   const PORT = 4000;

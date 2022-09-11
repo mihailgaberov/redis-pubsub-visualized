@@ -20,6 +20,16 @@ const {
 
 const client = new Redis(REDIS_URL);
 
+console.log("Connected to Render Redis! 🚀");
+
+client.set("animal", "cat");
+
+client.get("animal").then((result) => {
+  console.log(`Result for key animal: ${result}`); // Prints "cat"
+});
+
+client.del("animal");
+
 module.exports = {
   get: async (key) => {
     try {
