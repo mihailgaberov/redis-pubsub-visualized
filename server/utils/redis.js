@@ -1,5 +1,4 @@
-import dotenv from "dotenv";
-import Redis from "ioredis";
+const Redis = require("ioredis");
 dotenv.config();
 
 // const username: string = process.env.REDIS_USER ?? "";
@@ -22,16 +21,16 @@ console.log(">>> REDIS_URL: ", REDIS_URL);
 
 const client = new Redis(REDIS_URL);
 
-export const get = async (key: any) => {
+export const get = async (key) => {
   try {
-    const data: any = await client.get(key);
+    const data = await client.get(key);
     return JSON.parse(data);
   } catch (e) {
     return null;
   }
 };
 
-export const set = async (key: any, data: any) => {
+export const set = async (key, data) => {
   try {
     await client.set(key, JSON.stringify(data));
     return true;

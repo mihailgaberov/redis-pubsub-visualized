@@ -1,6 +1,6 @@
-import pubsub from "./pubsub";
+const pubsub = require("./pubsub");
 
-import { get, set } from "./utils/redis";
+const { get, set } = "./utils/redis.js";
 
 const CHANNELS = {
   WEATHER: "weather",
@@ -8,7 +8,7 @@ const CHANNELS = {
   MUSIC: "music",
 };
 
-const publishData = async (data: Object, channel: string) => {
+const publishData = async (data, channel) => {
   pubsub.publish(channel, { [channel]: data });
   await set(channel, data);
   return data;
