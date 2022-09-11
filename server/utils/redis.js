@@ -17,8 +17,6 @@ const {
   REDIS_URL = "redis://redis-14177.c15.us-east-1-4.ec2.cloud.redislabs.com:14177",
 } = process.env;
 
-console.log(">>> REDIS_URL: ", REDIS_URL);
-
 const client = new Redis(REDIS_URL);
 
 export const get = async (key) => {

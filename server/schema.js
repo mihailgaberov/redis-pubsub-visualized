@@ -1,6 +1,6 @@
 import { gql } from "apollo-server-express";
 
-const schema = gql`
+module.exports = gql`
   type Weather {
     icon: String
     text: String!
@@ -34,4 +34,3 @@ const schema = gql`
     music: Music
   }
 `;
-export default schema;

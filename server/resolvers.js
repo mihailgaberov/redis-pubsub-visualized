@@ -14,7 +14,7 @@ const publishData = async (data, channel) => {
   return data;
 };
 
-export default {
+module.export = {
   Query: {
     weather: () => get(CHANNELS.WEATHER),
     sport: () => get(CHANNELS.SPORT),

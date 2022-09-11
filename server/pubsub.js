@@ -1,5 +1,5 @@
 const { RedisPubSub } = require("graphql-redis-subscriptions");
 
-const pubsub = new RedisPubSub();
+module.exports = new RedisPubSub();
 
-export default pubsub;
+// export default pubsub;
