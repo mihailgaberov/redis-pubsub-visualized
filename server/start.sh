@@ -1,3 +1,3 @@
 #!/bin/bash
-redis-server redis.conf &
+redis-server ./redis.conf &
 yarn start
