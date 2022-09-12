@@ -1,2 +1,2 @@
 #!/bin/bash
-yarn start
+redis-server
