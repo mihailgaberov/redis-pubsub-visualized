@@ -1,3 +1,3 @@
 FROM redislabs/redismod
 
-CMD ["start.sh"]
+CMD ["./start.sh"]
