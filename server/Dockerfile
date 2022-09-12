@@ -1,5 +1,4 @@
 FROM redislabs/redismod
+WORKDIR /server
 
-RUN docker run -p 6379:6379 redislabs/redismod:preview
-
-CMD [ "redis-server", "yarn", "start"]
+CMD [ "redis-server", "redis.conf", "yarn", "start"]
