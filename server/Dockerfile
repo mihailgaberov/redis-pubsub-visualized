@@ -1,5 +1,4 @@
 FROM redislabs/redismod
-WORKDIR /
-
-
+COPY ["start.sh", "/root/start.sh"]
+WORKDIR /root
 CMD ["./start.sh"]
