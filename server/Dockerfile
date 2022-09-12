@@ -42,5 +42,3 @@ CMD ["--loadmodule", "/usr/lib/redis/modules/redisai.so", \
     "--loadmodule", "/usr/lib/redis/modules/redisbloom.so", \
     "--loadmodule", "/usr/lib/redis/modules/redisgears.so", \
     "Plugin", "/var/opt/redislabs/modules/rg/plugin/gears_python.so"]
-
-RUN yarn start
