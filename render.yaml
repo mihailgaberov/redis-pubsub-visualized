@@ -4,6 +4,7 @@ services:
     name: backend
     env: docker
     branch: main
+    plan: free
     dockerfilePath: ./server/Dockerfile
     dockerContext: ./server
     healthCheckPath: /
@@ -23,7 +24,7 @@ services:
     name: frontend
     env: static
     buildCommand: yarn build
-    staticPublishPath: ./build
+    staticPublishPath: ./dist
     pullRequestPreviewsEnabled: true # optional
     headers:
       - path: /*
