@@ -23,7 +23,7 @@ services:
   - type: web
     name: frontend
     env: static
-    buildCommand: cd client && yarn build
+    buildCommand: cd client && yarn && yarn build
     staticPublishPath: ./client/dist
     pullRequestPreviewsEnabled: true # optional
     headers:
