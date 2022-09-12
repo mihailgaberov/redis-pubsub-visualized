@@ -1,3 +1,3 @@
 #!/bin/bash
-redis-server ./redis.conf &
+redis-server ./root/redis.conf &
 yarn start
