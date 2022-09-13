@@ -1,16 +1,3 @@
-// import { ApolloServer } from "apollo-server-express";
-// import { createServer } from "http";
-// import express from "express";
-// import {
-//   ApolloServerPluginDrainHttpServer,
-//   ApolloServerPluginLandingPageLocalDefault,
-// } from "apollo-server-core";
-// import { makeExecutableSchema } from "@graphql-tools/schema";
-// import { WebSocketServer } from "ws";
-// import { useServer } from "graphql-ws/lib/use/ws";
-// import resolvers from "./resolvers";
-// import typeDefs from "./schema";
-
 const { ApolloServer } = require("apollo-server-express");
 const { createServer } = require("http");
 const express = require("express");
