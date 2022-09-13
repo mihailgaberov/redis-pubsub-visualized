@@ -1,4 +1,3 @@
-FROM redislabs/redismod
-COPY ["start.sh", "/root/start.sh"]
-WORKDIR /root
-CMD ["./start.sh"]
+FROM redislabs/redismod:latest
+
+CMD yarn run start && docker run -p 6379:6379 redislabs/redismod:preview
