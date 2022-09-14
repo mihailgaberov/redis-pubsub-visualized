@@ -5,6 +5,8 @@ services:
     env: docker
     branch: main
     plan: free
+    dockerfilePath: ./server/Dockerfile
+    dockerContext: ./server
     startCommand: cd server && yarn start
     healthCheckPath: /
     envVars:
