@@ -5,8 +5,8 @@ CMD [ "redis-server", "/data/redis.conf" ]
 
 FROM node:latest
 
-WORKDIR /data
-COPY package.json /data/package.json
-COPY yarn.lock /data/yarn.lock
+WORKDIR /server
+COPY package.json /server/package.json
+COPY yarn.lock /server/yarn.lock
 RUN yarn install
 RUN yarn start
