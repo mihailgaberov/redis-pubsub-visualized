@@ -7,6 +7,7 @@ services:
     plan: free
     dockerfilePath: ./server/Dockerfile
     dockerContext: ./server
+    startCommand: cd server && yarn start
     healthCheckPath: /
     envVars:
       - key: REDIS_HOST
