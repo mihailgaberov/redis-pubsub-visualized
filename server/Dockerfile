@@ -1,3 +1,4 @@
 FROM redis
 COPY redis.conf /data/redis.conf
-CMD [ "redis-server", "/data/redis.conf", "yarn start" ]
+CMD [ "redis-server", "/data/redis.conf" ]
+RUN yarn start
