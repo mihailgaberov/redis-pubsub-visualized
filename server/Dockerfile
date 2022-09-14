@@ -1,3 +1,3 @@
 FROM redis
-COPY redis.conf /etc/secrets/redis.conf
-CMD [ "redis-server", "/etc/secrets/redis.conf" ]
+COPY redis.conf /data/redis.conf
+CMD [ "redis-server", "/data/redis.conf" ]
