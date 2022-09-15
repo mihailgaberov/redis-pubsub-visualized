@@ -46,6 +46,6 @@ const typeDefs = require("./schema.js");
   server.applyMiddleware({ app });
 
   httpServer.listen(PORT, () => {
-    console.log(`Server is now running on :${PORT}${server.graphqlPath}`);
+    console.log(`🚀 Server is now running on :${PORT}${server.graphqlPath}`);
   });
 })();

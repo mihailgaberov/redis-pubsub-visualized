@@ -4,8 +4,8 @@ dotenv.config();
 
 // const username = process.env.REDIS_USER ?? "";
 // const password = process.env.REDIS_PASSWORD ?? "";
-// const host = process.env.REDIS_HOST ?? "";
-// const port = Number(process.env.REDIS_PORT) ?? 6376;
+const host = process.env.REDIS_HOST ?? "";
+const port = Number(process.env.REDIS_PORT) ?? 6376;
 
 // const client = new Redis({
 //   port: port,
@@ -14,9 +14,12 @@ dotenv.config();
 //   password: password,
 //   connectionName: "Migelito",
 // });
-const { REDIS_URL } = process.env;
+// const { REDIS_URL } = process.env;
 
-const client = new Redis(REDIS_URL);
+const client = new Redis({
+  host: host,
+  port: port,
+});
 
 console.log("Connected to Render Redis! 🚀");
 
