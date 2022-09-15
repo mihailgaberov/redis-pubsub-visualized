@@ -4,6 +4,6 @@ CMD [ "redis-server", "/data/redis.conf" ]
 
 
 FROM node:latest
-RUN yarn install
 COPY . .
+RUN yarn install
 CMD ["yarn", "start"]
