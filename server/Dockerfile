@@ -5,5 +5,5 @@ CMD [ "redis-server", "/data/redis.conf" ]
 
 FROM node:latest
 COPY . .
-RUN yarn install && yarn start
+RUN yarn install && redis-server && yarn start
 # CMD ["yarn", "start"]
