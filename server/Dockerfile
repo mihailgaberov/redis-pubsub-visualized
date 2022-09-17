@@ -1,4 +1,4 @@
-FROM node:latest
+FROM alpine:3.15
 COPY . .
 RUN apt-get update
 RUN yarn install
