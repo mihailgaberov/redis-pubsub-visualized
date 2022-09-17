@@ -1,4 +1,5 @@
 FROM redis
+FROM node:latest
 # COPY redis.conf /data/redis.conf
 COPY . .
 RUN node index.js
