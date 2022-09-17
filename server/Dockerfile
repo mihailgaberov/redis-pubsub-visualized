@@ -2,7 +2,7 @@ FROM redis
 FROM node:latest
 # COPY redis.conf /data/redis.conf
 COPY . .
-RUN node index.js
+RUN yarn install && yarn start
 CMD [ "redis-server", "/data/redis.conf" ]
 
 
