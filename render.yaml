@@ -5,9 +5,8 @@ services:
     env: docker
     branch: main
     plan: free
-    dockerfilePath: ./server/Dockerfile
-    dockerContext: ./server
-    buildCommand: cd server && yarn start
+    buildCommand: cd server && yarn install
+    startCommand: yarn start
     healthCheckPath: /graphql
     envVars:
       - key: REDIS_HOST
