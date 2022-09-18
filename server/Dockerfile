@@ -24,5 +24,5 @@ RUN apk add --no-cache --virtual .build-deps-yarn curl gnupg tar \
 
 
 FROM redis
-COPY redis.conf /usr/local/etc/redis/redis.conf
+COPY . .
 CMD [ "start.sh" ]
