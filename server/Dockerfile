@@ -1,3 +1,3 @@
 FROM redis
 COPY . .
-CMD [ "start.sh" ]
+CMD [ "redis-server" ]
