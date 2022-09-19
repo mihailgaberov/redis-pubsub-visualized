@@ -19,6 +19,7 @@ ENV REDISGRAPH_DEPS libgomp1 git
 WORKDIR /data
 RUN apt-get update -qq
 RUN apt-get upgrade -y
+RUN apt-get install -y yarn
 RUN apt-get install -y --no-install-recommends ${REDISGRAPH_DEPS};
 RUN rm -rf /var/cache/apt
 
