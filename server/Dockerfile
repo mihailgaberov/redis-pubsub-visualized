@@ -37,6 +37,8 @@ RUN rm -rf /var/cache/apt
 # COPY --from=redisgears --chown=redis:redis ${REDISGEARS_PY_DIR}/ ${REDISGEARS_PY_DIR}/
 COPY . .
 
+RUN chmod +x start.sh
+
 # ENV PYTHONPATH /usr/lib/redis/modules/deps/cpython/Lib
 ENTRYPOINT ["redis-server"]
 CMD ["--loadmodule", "/usr/lib/redis/modules/redisai.so", \
