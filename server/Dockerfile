@@ -19,7 +19,11 @@ ENV REDISGRAPH_DEPS libgomp1 git
 WORKDIR /data
 RUN apt-get update -qq
 RUN apt-get upgrade -y
-RUN apt-get install -y yarn
+RUN sudo apt remove cmdtest
+RUN sudo apt remove yarn
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add - echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+RUN sudo apt-get update
+RUN sudo apt-get install yarn -y
 RUN apt-get install -y --no-install-recommends ${REDISGRAPH_DEPS};
 RUN rm -rf /var/cache/apt
 
