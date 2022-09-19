@@ -26,15 +26,16 @@ RUN apt-get install yarn -y
 RUN apt-get install -y --no-install-recommends ${REDISGRAPH_DEPS};
 RUN rm -rf /var/cache/apt
 
-COPY --from=redisai ${LD_LIBRARY_PATH}/redisai.so ${LD_LIBRARY_PATH}/
-COPY --from=redisai ${LD_LIBRARY_PATH}/backends ${LD_LIBRARY_PATH}/backends
-COPY --from=redisearch ${LD_LIBRARY_PATH}/redisearch.so ${LD_LIBRARY_PATH}/
-COPY --from=redisgraph ${LD_LIBRARY_PATH}/redisgraph.so ${LD_LIBRARY_PATH}/
-COPY --from=redistimeseries ${LD_LIBRARY_PATH}/*.so ${LD_LIBRARY_PATH}/
-COPY --from=rejson ${LD_LIBRARY_PATH}/*.so ${LD_LIBRARY_PATH}/
-COPY --from=rebloom ${LD_LIBRARY_PATH}/*.so ${LD_LIBRARY_PATH}/
-COPY --from=redisgears --chown=redis:redis ${REDISGEARS_MODULE_DIR}/redisgears.so ${LD_LIBRARY_PATH}/
-COPY --from=redisgears --chown=redis:redis ${REDISGEARS_PY_DIR}/ ${REDISGEARS_PY_DIR}/
+# COPY --from=redisai ${LD_LIBRARY_PATH}/redisai.so ${LD_LIBRARY_PATH}/
+# COPY --from=redisai ${LD_LIBRARY_PATH}/backends ${LD_LIBRARY_PATH}/backends
+# COPY --from=redisearch ${LD_LIBRARY_PATH}/redisearch.so ${LD_LIBRARY_PATH}/
+# COPY --from=redisgraph ${LD_LIBRARY_PATH}/redisgraph.so ${LD_LIBRARY_PATH}/
+# COPY --from=redistimeseries ${LD_LIBRARY_PATH}/*.so ${LD_LIBRARY_PATH}/
+# COPY --from=rejson ${LD_LIBRARY_PATH}/*.so ${LD_LIBRARY_PATH}/
+# COPY --from=rebloom ${LD_LIBRARY_PATH}/*.so ${LD_LIBRARY_PATH}/
+# COPY --from=redisgears --chown=redis:redis ${REDISGEARS_MODULE_DIR}/redisgears.so ${LD_LIBRARY_PATH}/
+# COPY --from=redisgears --chown=redis:redis ${REDISGEARS_PY_DIR}/ ${REDISGEARS_PY_DIR}/
+COPY . .
 
 # ENV PYTHONPATH /usr/lib/redis/modules/deps/cpython/Lib
 ENTRYPOINT ["redis-server"]
