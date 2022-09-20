@@ -8,8 +8,8 @@ const host = process.env.REDIS_HOST ?? "";
 const port = Number(process.env.REDIS_PORT) ?? 6376;
 
 const client = new Redis({
-  port: 13893,
-  host: "redis-13893.c77.eu-west-1-1.ec2.cloud.redislabs.com",
+  port: port,
+  host: host,
   username: username,
   password: password,
   connectionName: "Migelito",
