@@ -6,7 +6,7 @@ RUN yarn install
 RUN apt-get update -y
 RUN apt-get install -y redis-server
 RUN redis-server
-# ENTRYPOINT [ "yarn" ]
-# CMD ["start"]
+ENTRYPOINT [ "yarn" ]
+CMD ["start"]
 # ENTRYPOINT [ "redis-server" ]
 # CMD [ "/data/redis.conf" ]
