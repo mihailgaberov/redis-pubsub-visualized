@@ -1,4 +1,4 @@
-FROM redis
+FROM redislabs/redismod
 FROM node:latest
 # COPY redis.conf /data/redis.conf
 COPY . .
