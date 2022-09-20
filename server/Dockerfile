@@ -1,10 +1,9 @@
 FROM redis
-COPY redis.conf /data/redis.conf
-CMD [ "redis-server", "/data/redis.conf" ]
-
-
 FROM node:latest
+# COPY redis.conf /data/redis.conf
 COPY . .
-RUN yarn install
-ENTRYPOINT [ "yarn" ]
-CMD ["start"]
+RUN yarn install && yarn start
+# ENTRYPOINT [ "yarn" ]
+# CMD ["start"]
+ENTRYPOINT [ "redis-server" ]
+CMD [ "/data/redis.conf" ]
