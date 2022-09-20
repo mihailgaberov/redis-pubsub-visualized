@@ -16,16 +16,19 @@ const client = new Redis({
 });
 // const { REDISCLOUD_URL } = process.env;
 // const client = new Redis(REDISCLOUD_URL);
+if (client) {
+  console.log("Connected to Redis! 🚀");
 
-console.log("Connected to Render Redis! 🚀");
+  client.set("animal", "cat");
 
-client.set("animal", "cat");
+  client.get("animal").then((result) => {
+    console.log(`Result for key animal: ${result}`);
+  });
 
-client.get("animal").then((result) => {
-  console.log(`Result for key animal: ${result}`);
-});
-
-client.del("animal");
+  client.del("animal");
+} else {
+  console.log("Connection to Redis failed: ", client);
+}
 
 module.exports = {
   get: async (key) => {
