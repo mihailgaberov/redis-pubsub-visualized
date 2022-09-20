@@ -1,9 +1,7 @@
 FROM redislabs/redismod
-FROM node:latest
-COPY . .
+COPY redis.conf /data/redis.conf
 RUN apt-get update -y
 RUN apt-get install -y redis-server
-RUN apt-get install -y yarn
 # RUN redis-server
-# RUN yarn install
-CMD ["./start.sh"]
+
+CMD ["redis-server", "/data/redis.conf"]
