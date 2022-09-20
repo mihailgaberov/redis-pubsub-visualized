@@ -1,2 +1,2 @@
 #!/bin/bash
-redis-server && yarn start
+yarn start
