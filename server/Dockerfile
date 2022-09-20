@@ -4,6 +4,6 @@ FROM node:latest
 COPY . .
 RUN apt-get update -y
 RUN apt-get install -y redis-server
-RUN redis-server
-RUN yarn install
+# RUN redis-server
+# RUN yarn install
 CMD ["./start.sh"]
