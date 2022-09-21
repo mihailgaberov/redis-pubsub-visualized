@@ -7,7 +7,7 @@ services:
     branch: main # optional (defaults to master)
     rootDir: server
     numInstances: 3 # optional (defaults to 1)
-    healthCheckPath: :4000/graphql
+    healthCheckPath: /graphql
     envVars:
       - key: REDIS_HOST
         fromService:
