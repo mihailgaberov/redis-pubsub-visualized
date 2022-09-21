@@ -3,7 +3,7 @@ services:
   - type: web
     name: server
     env: docker
-    repo: https://github.com/mihailgaberov/redis-pub-sub-visualized/ # optional
+    repo: https://github.com/mihailgaberov/redis-pub-sub-visualized.git # optional
     region: oregon # optional (defaults to oregon)
     plan: free # optional (defaults to starter)
     branch: main # optional (defaults to master)
