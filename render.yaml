@@ -1,0 +1,69 @@
+services:
+  # A Docker web service
+  - type: web
+    name: server
+    env: docker
+    repo: https://github.com/render-examples/webdis.git # optional
+    region: oregon # optional (defaults to oregon)
+    plan: free # optional (defaults to starter)
+    branch: main # optional (defaults to master)
+    rootDir: serfver
+    dockerCommand: ./webdis.sh # optional (defaults to Dockerfile command)
+    numInstances: 3 # optional (defaults to 1)
+    healthCheckPath: :4000/graphql
+    envVars:
+      - key: REDIS_HOST
+        fromService:
+          type: redis
+          name: lightning
+          property: host # available properties are listed below
+      - key: REDIS_PORT
+        fromService:
+          type: redis
+          name: lightning
+          property: port
+      - fromGroup: pubsub
+
+  # A static site
+  - type: web
+    name: client
+    env: static
+    buildCommand: cd client && yarn build
+    staticPublishPath: ./client/build
+    pullRequestPreviewsEnabled: true # optional
+    buildFilter:
+      paths:
+        - client/src/**/*.js
+      ignoredPaths:
+        - client/src/**/*.test.js
+    headers:
+      - path: /*
+        name: X-Frame-Options
+        value: sameorigin
+    routes:
+      - type: redirect
+        source: /old
+        destination: /new
+      - type: rewrite
+        source: /a/*
+        destination: /a
+  # A Redis instance
+  - type: redis
+    name: lightning
+    ipAllowList: # required
+      - source: 0.0.0.0/0
+        description: everywhere
+    plan: free # optional (defaults to starter)
+    maxmemoryPolicy: noeviction # optional (defaults to allkeys-lru)
+
+envVarGroups:
+  - name: pubsub
+    envVars:
+      - key: REDIS_HOST
+        value: redis-13893.c77.eu-west-1-1.ec2.cloud.redislabs.com
+      - key: REDIS_PASSWORD
+        value: Cj9L7MxzTECMcG7Ns7hG76OJBOmR6qvP
+      - key: REDIS_USER
+        value: default
+      - key: REDIS_PORT
+        value: 13893
