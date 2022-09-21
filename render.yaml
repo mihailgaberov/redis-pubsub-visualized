@@ -10,7 +10,7 @@ services:
     numInstances: 3 # optional (defaults to 1)
     healthCheckPath: :4000/graphql
     envVars:
-      - key: REDIS_HOST
+      - key: REDIS_URL
         fromService:
           type: redis
           name: lightning
@@ -57,7 +57,7 @@ services:
 envVarGroups:
   - name: pubsub
     envVars:
-      - key: REDIS_HOST
-        value: redis://red-ccldfnkgqg4f5u024lbg
+      - key: REDIS_URL
+        value: redis://red-ccldfnkgqg4f5u024lbg:6379
       - key: REDIS_PORT
         value: 6379
