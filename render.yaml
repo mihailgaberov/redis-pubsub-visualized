@@ -59,10 +59,6 @@ envVarGroups:
   - name: pubsub
     envVars:
       - key: REDIS_HOST
-        value: redis-13893.c77.eu-west-1-1.ec2.cloud.redislabs.com
-      - key: REDIS_PASSWORD
-        value: Cj9L7MxzTECMcG7Ns7hG76OJBOmR6qvP
-      - key: REDIS_USER
-        value: default
+        value: redis://red-ccldfnkgqg4f5u024lbg
       - key: REDIS_PORT
-        value: 13893
+        value: 6379
