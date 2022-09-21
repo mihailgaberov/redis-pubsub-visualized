@@ -58,7 +58,7 @@ services:
 envVarGroups:
   - name: pubsub
     envVars:
-      - key: REDIS_HOST
+      - key: host
         value: redis://red-ccldfnkgqg4f5u024lbg
-      - key: REDIS_PORT
+      - key: port
         value: 6379
