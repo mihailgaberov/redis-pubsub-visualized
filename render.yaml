@@ -3,23 +3,24 @@ services:
   - type: web
     name: server
     env: docker
+    region: oregon # optional (defaults to oregon)
     plan: free # optional (defaults to starter)
     branch: main # optional (defaults to master)
     rootDir: server
     numInstances: 3 # optional (defaults to 1)
-    healthCheckPath: /graphql
+    healthCheckPath: :4000/graphql
     envVars:
       - key: REDIS_HOST
         fromService:
           type: redis
           name: lightning
-          property: host # available properties are listed below
+          property: REDIS_HOST # available properties are listed below
       - key: REDIS_PORT
         fromService:
           type: redis
           name: lightning
           property: port
-      - fromGroup: pubsub
+      - fromGroup: REDIS_PORT
 
   # A static site
   - type: web
@@ -56,7 +57,7 @@ services:
 envVarGroups:
   - name: pubsub
     envVars:
-      - key: host
+      - key: REDIS_HOST
         value: redis://red-ccldfnkgqg4f5u024lbg
-      - key: port
+      - key: REDIS_PORT
         value: 6379
