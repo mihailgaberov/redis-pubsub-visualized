@@ -28,7 +28,7 @@ services:
     name: client
     env: static
     buildCommand: cd client && yarn && yarn build
-    staticPublishPath: ./client/build
+    staticPublishPath: ./client/dist
     pullRequestPreviewsEnabled: true # optional
     buildFilter:
       paths:
