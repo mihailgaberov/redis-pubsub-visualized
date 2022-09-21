@@ -3,12 +3,11 @@ services:
   - type: web
     name: server
     env: docker
-    repo: https://github.com/render-examples/webdis.git # optional
+    repo: https://github.com/mihailgaberov/redis-pub-sub-visualized/ # optional
     region: oregon # optional (defaults to oregon)
     plan: free # optional (defaults to starter)
     branch: main # optional (defaults to master)
-    rootDir: serfver
-    dockerCommand: ./webdis.sh # optional (defaults to Dockerfile command)
+    rootDir: server
     numInstances: 3 # optional (defaults to 1)
     healthCheckPath: :4000/graphql
     envVars:
@@ -28,7 +27,7 @@ services:
   - type: web
     name: client
     env: static
-    buildCommand: cd client && yarn build
+    buildCommand: cd client && yarn && yarn build
     staticPublishPath: ./client/build
     pullRequestPreviewsEnabled: true # optional
     buildFilter:
