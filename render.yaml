@@ -14,13 +14,13 @@ services:
         fromService:
           type: redis
           name: lightning
-          property: host # available properties are listed below
+          property: REDIS_HOST # available properties are listed below
       - key: REDIS_PORT
         fromService:
           type: redis
           name: lightning
-          property: port
-      - fromGroup: REDIS_PORT
+          property: REDIS_PORT
+      - fromGroup: pubsub
 
   # A static site
   - type: web
