@@ -15,5 +15,6 @@ RUN apt-get install -y redis-server
 # RUN chmod +x start.sh.
 # FROM node:16
 
-ENTRYPOINT [ "./start.sh" ]
+# ENTRYPOINT [ "./start.sh" ]
+CMD [ "./start.sh" ]
 RUN redis-server
