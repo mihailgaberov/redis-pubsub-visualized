@@ -3,14 +3,13 @@ services:
   - type: web
     name: server
     env: docker
-    region: oregon # optional (defaults to oregon)
-    plan: free # optional (defaults to starter)
     branch: main # optional (defaults to master)
     rootDir: server
-    numInstances: 3 # optional (defaults to 1)
-    healthCheckPath: :4000/graphql
+    dockerCommand: ./server/start.sh # optional (defaults to Dockerfile command)
+    numInstances: 3
+    healthCheckPath: /graphql
     envVars:
-      - key: REDIS_URL
+      - key: REDIS_HOST
         fromService:
           type: redis
           name: lightning
@@ -20,13 +19,11 @@ services:
           type: redis
           name: lightning
           property: port
-      - fromGroup: pubsub
-
   # A static site
   - type: web
     name: client
     env: static
-    buildCommand: cd client && yarn && yarn build
+    buildCommand: cd client && yarn build
     staticPublishPath: ./client/dist
     pullRequestPreviewsEnabled: true # optional
     buildFilter:
@@ -53,11 +50,3 @@ services:
         description: everywhere
     plan: free # optional (defaults to starter)
     maxmemoryPolicy: noeviction # optional (defaults to allkeys-lru)
-
-envVarGroups:
-  - name: pubsub
-    envVars:
-      - key: REDIS_URL
-        value: redis://red-ccldfnkgqg4f5u024lbg:6379
-      - key: REDIS_PORT
-        value: 6379
