@@ -3,9 +3,9 @@ services:
   - type: web
     name: server
     env: docker
+    plan: free
     branch: main # optional (defaults to master)
     rootDir: server
-    plan: free
     # dockerCommand: ./start.sh # optional (defaults to Dockerfile command)
     numInstances: 3
     envVars:
