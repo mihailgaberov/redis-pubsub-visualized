@@ -16,4 +16,4 @@ RUN redis-server
 
 FROM node:16
 
-CMD [ "./start.sh" ]
+ENTRYPOINT [ "./start.sh" ]
