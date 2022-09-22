@@ -8,7 +8,7 @@
 
 # syntax=docker/dockerfile:1
 
-FROM redislabs/redismod
+FROM node:latest
 WORKDIR /server
 RUN apt-get update -y
 RUN apt-get install -y redis-server
