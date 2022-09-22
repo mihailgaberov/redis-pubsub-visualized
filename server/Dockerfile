@@ -13,6 +13,6 @@ COPY . .
 WORKDIR /server
 RUN apt-get update -y
 RUN apt-get install -y redis-server
-RUN chmod +x ./start.sh
+RUN chmod +x ./server/start.sh
 
 CMD ./start.sh
