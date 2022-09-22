@@ -14,6 +14,6 @@ RUN apt-get update -y
 RUN apt-get install -y redis-server
 RUN redis-server
 
-FROM node:16
+# FROM node:16
 
 ENTRYPOINT [ "./start.sh" ]
