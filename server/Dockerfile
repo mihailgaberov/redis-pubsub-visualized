@@ -12,9 +12,10 @@ FROM redislabs/redismod
 WORKDIR /server
 RUN apt-get update -y
 RUN apt-get install -y redis-server
+RUN redis-server
+
 # RUN chmod +x start.sh.
 # FROM node:16
 
-# ENTRYPOINT [ "./start.sh" ]
-RUN redis-server
+ENTRYPOINT [ "./start.sh" ]
 # CMD [ "./start.sh" ]
