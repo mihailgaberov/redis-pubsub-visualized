@@ -7,7 +7,6 @@ services:
     rootDir: server
     dockerCommand: ./server/start.sh # optional (defaults to Dockerfile command)
     numInstances: 3
-    healthCheckPath: /graphql
     envVars:
       - key: REDIS_HOST
         fromService:
@@ -23,7 +22,7 @@ services:
   - type: web
     name: client
     env: static
-    buildCommand: cd client && yarn build
+    buildCommand: cd client && yarn && yarn build
     staticPublishPath: ./client/dist
     pullRequestPreviewsEnabled: true # optional
     buildFilter:
