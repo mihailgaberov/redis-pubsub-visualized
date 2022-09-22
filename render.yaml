@@ -5,7 +5,7 @@ services:
     env: docker
     branch: main # optional (defaults to master)
     rootDir: server
-    dockerCommand: ./server/start.sh # optional (defaults to Dockerfile command)
+    dockerCommand: ./start.sh # optional (defaults to Dockerfile command)
     numInstances: 3
     envVars:
       - key: REDIS_HOST
