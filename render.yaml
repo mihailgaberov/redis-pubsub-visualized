@@ -18,6 +18,14 @@ services:
           type: redis
           name: lightning
           property: port
+    # A Docker web service
+  - type: web
+    name: redis-server
+    env: docker
+    plan: free
+    branch: main
+    rootDir: redis-server
+    numInstances: 1
   # A static site
   - type: web
     name: client
