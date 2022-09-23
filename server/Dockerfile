@@ -55,7 +55,9 @@ exitcodes=0 ' >> /etc/supervisord.d/redis.conf
 # RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
 # RUN apt-get install -y nodejs
 # Using Ubuntu
-RUN curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+RUN apt update
+RUN apt-get install -y curl
+RUN curl -fsSL https://deb.nodesource.com/setup_16.x | -E bash -
 RUN apt-get install -y nodejs
 
 
