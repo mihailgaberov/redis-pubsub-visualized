@@ -52,8 +52,12 @@ exitcodes=0 ' >> /etc/supervisord.d/redis.conf
 # RUN apt update
 # RUN apt-get install -y redis
 # RUN systemctl status redis-server.service
-RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
+# RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
+# RUN apt-get install -y nodejs
+# Using Ubuntu
+RUN curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
 RUN apt-get install -y nodejs
+
 
 COPY . .
 CMD [ "start.sh" ]
