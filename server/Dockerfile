@@ -50,7 +50,7 @@ FROM ubuntu:latest
 
 WORKDIR /server
 RUN apt update
-RUN apt-get install systemd
+RUN apt-get install -y systemd
 RUN apt-get install -y redis
 RUN apt update
 RUN apt-get install -y curl
