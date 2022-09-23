@@ -12,7 +12,7 @@ FROM node:latest
 WORKDIR /server
 RUN apt-get update -y
 RUN apt-get install -y redis-server
-COPY . ./server
+COPY . .
 RUN chmod +x start.sh
 
 CMD ./start.sh
