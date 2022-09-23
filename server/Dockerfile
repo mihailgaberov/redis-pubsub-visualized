@@ -51,6 +51,7 @@ exitcodes=0 ' >> /etc/supervisord.d/redis.conf
 # WORKDIR /server
 # RUN apt update
 # RUN apt-get install -y redis
+# sudo systemctl start redis-server.service
 # RUN systemctl status redis-server.service
 # RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
 # RUN apt-get install -y nodejs
@@ -59,6 +60,7 @@ RUN apt update
 RUN apt-get install -y curl
 RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
 RUN apt-get install -y nodejs
+RUN npm install -g yarn
 
 COPY . .
 RUN chmod +x start.sh
