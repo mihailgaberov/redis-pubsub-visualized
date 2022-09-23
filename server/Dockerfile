@@ -20,8 +20,10 @@ RUN echo \
 
 RUN apt-get update
 RUN apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
-RUN service docker start
-COPY . .
+RUN service docker start & docker --help
 RUN docker run -p 6379:6379 redislabs/redismod:preview
+
+COPY . .
+
 RUN chmod +x start.sh
 CMD ./start.sh
