@@ -10,9 +10,8 @@
 
 FROM ubuntu:latest
 WORKDIR /server
-RUN add-apt-repository ppa:redislabs/redis
 RUN apt update
-RUN apt install redis
+RUN apt-get install -y redis
 RUN systemctl status redis-server.service
 RUN curl -sL https://deb.nodesource.com/setup_16.x | bash -
 RUN apt-get install -y nodejs
