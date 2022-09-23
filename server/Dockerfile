@@ -14,5 +14,6 @@ RUN apt-get update -y
 RUN apt-get install -y redis-server
 COPY . .
 RUN chmod +x start.sh
+RUN redis-server
 
 CMD ./start.sh

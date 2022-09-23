@@ -1,3 +1,3 @@
 #!/bin/sh
 
-yarn && yarn start && redis-server
+yarn && yarn start
