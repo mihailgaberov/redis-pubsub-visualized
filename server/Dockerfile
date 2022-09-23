@@ -9,10 +9,10 @@
 # syntax=docker/dockerfile:1
 
 FROM node:latest
-COPY . .
 WORKDIR /server
 RUN apt-get update -y
 RUN apt-get install -y redis-server
-RUN chmod +x ./server/start.sh
+COPY . ./server
+RUN chmod +x ./start.sh
 
 CMD ./start.sh
