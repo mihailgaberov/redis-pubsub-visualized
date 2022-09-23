@@ -8,7 +8,7 @@
 # RUN chmod +x start.sh
 # CMD ./start.sh
 
-FROM ubuntu:latest
+FROM jrei/jrei/systemd-ubuntu
 # RUN mkdir -p /etc/supervisord.d
 
 # # general config for supervisord
@@ -50,7 +50,7 @@ FROM ubuntu:latest
 
 WORKDIR /server
 RUN apt update
-# RUN apt-get install -y systemd
+RUN apt-get install -y systemd
 RUN apt-get install -y redis
 RUN redis-server &
 RUN apt update
@@ -58,8 +58,8 @@ RUN apt-get install -y curl
 RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
 RUN apt-get install -y nodejs
 RUN npm install -g yarn
-# RUN systemctl start redis-server.service
-# RUN systemctl status redis-server.service
+RUN systemctl start redis-server.service
+RUN systemctl status redis-server.service
 
 COPY . .
 RUN chmod +x start.sh
