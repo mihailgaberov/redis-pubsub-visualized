@@ -2,6 +2,8 @@ const Redis = require("ioredis");
 const dotenv = require("dotenv");
 dotenv.config();
 
+console.log(">>> env: ", process.env);
+
 // const username = process.env.REDIS_USER ?? "";
 // const password = process.env.REDIS_PASSWORD ?? "";
 const host = process.env.REDIS_HOST ?? "";
