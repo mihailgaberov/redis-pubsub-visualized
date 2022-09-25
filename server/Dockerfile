@@ -11,4 +11,7 @@ RUN npm install -g yarn
 COPY . .
 
 RUN chmod +x start.sh
+
+RUN redis-server ./redis.conf
+
 CMD ./start.sh
