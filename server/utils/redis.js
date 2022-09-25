@@ -24,7 +24,7 @@ if (client) {
     console.log(`🎉🎉🎉 Result for key 'success': ${result}`);
   });
 
-  client.del("animal");
+  client.del("success");
 } else {
   console.log("Connection to Redis failed: ", client);
 }
