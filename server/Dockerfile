@@ -13,6 +13,6 @@ COPY . .
 
 RUN chmod +x start.sh
 
-RUN redis-server ./redis.conf
+RUN redis-server --daemonize yes
 
 CMD ./start.sh
