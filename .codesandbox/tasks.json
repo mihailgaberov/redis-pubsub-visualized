@@ -8,12 +8,12 @@
     },
     {
       "name": "start server",
-      "command": "cd server && yarn start",
+      "command": "cd server && yarn && yarn start",
       "runAtStart": true
     },
     {
       "name": "start client",
-      "command": "cd client && yarn dev",
+      "command": "cd client && yarn && yarn dev",
       "runAtStart": true
     }
   ]
