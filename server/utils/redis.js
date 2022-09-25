@@ -2,8 +2,6 @@ const Redis = require("ioredis");
 const dotenv = require("dotenv");
 dotenv.config();
 
-console.log(">>> redis.js env: ", process.env);
-
 const username = process.env.REDIS_USER ?? "";
 const password = process.env.REDIS_PASSWORD ?? "";
 const host = process.env.REDIS_HOST ?? "";
@@ -16,18 +14,14 @@ const client = new Redis({
   password: password,
   connectionName: "Migelito",
 });
-// const { REDISCLOUD_URL } = process.env;
-// const client = new Redis({
-//   host,
-//   port,
-// });
+
 if (client) {
   console.log("Connected to Redis! 🚀");
 
-  client.set("animal", "cat");
+  client.set("success", "TRUE");
 
-  client.get("animal").then((result) => {
-    console.log(`🎉🎉🎉 Result for key animal: ${result}`);
+  client.get("success").then((result) => {
+    console.log(`🎉🎉🎉 Result for key 'success': ${result}`);
   });
 
   client.del("animal");
