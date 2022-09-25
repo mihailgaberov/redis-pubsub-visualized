@@ -11,12 +11,12 @@
     },
     "start server": {
       "name": "start server",
-      "command": "cd server && yarn && yarn start",
+      "command": "cd ./server && yarn && yarn start",
       "runAtStart": true
     },
     "start client": {
       "name": "start client",
-      "command": "cd client && yarn && yarn dev",
+      "command": "cd ./client && yarn && yarn dev",
       "runAtStart": true
     }
   }
