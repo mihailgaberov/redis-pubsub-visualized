@@ -4,19 +4,19 @@
 
   // These tasks can be run from CodeSandbox. Running one will open a log in the app.
   "tasks": {
-    "start docker": {
-      "name": "cd server && docker run -p 6379:6379 redislabs/redismod:preview",
-      "command": "cd server",
+    "start redis-server": {
+      "name": "start redis-server",
+      "command": "cd server && docker run -p 6379:6379 redislabs/redismod:preview",
       "runAtStart": true
     },
     "start server": {
-      "name": "cd server && yarn && yarn start",
-      "command": "yarn start",
+      "name": "start server",
+      "command": "cd server && yarn && yarn start",
       "runAtStart": true
     },
     "start client": {
-      "name": "cd client && yarn && yarn dev",
-      "command": "yarn dev",
+      "name": "start client",
+      "command": "cd client && yarn && yarn dev",
       "runAtStart": true
     }
   }
