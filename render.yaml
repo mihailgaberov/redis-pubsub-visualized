@@ -41,11 +41,3 @@ services:
       - type: rewrite
         source: /a/*
         destination: /a
-  # A Redis instance
-  - type: redis
-    name: lightning
-    ipAllowList: # required
-      - source: 0.0.0.0/0
-        description: everywhere
-    plan: free # optional (defaults to starter)
-    maxmemoryPolicy: noeviction # optional (defaults to allkeys-lru)
