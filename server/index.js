@@ -1,6 +1,8 @@
 const { ApolloServer } = require("apollo-server-express");
 const { createServer } = require("http");
 const express = require("express");
+const cors = require("cors");
+
 const {
   ApolloServerPluginDrainHttpServer,
   ApolloServerPluginLandingPageLocalDefault,
@@ -14,6 +16,7 @@ const typeDefs = require("./schema.js");
 (async () => {
   const schema = makeExecutableSchema({ typeDefs, resolvers });
   const app = express();
+  app.use(cors());
   const httpServer = createServer(app);
   const PORT = 4000;
 
