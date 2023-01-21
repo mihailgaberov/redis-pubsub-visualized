@@ -1,18 +1,37 @@
-# syntax=docker/dockerfile:1
-FROM ubuntu:latest
+FROM debian:bullseye as builder
 
-WORKDIR /server
-RUN apt update
-RUN apt-get install -y curl
-RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
-RUN apt-get install -y nodejs
-RUN npm install -g yarn
-RUN apt-get install -y redis-server
+ARG NODE_VERSION=16.13.2
+ARG YARN_VERSION=1.22.19
+
+RUN apt-get update; apt install -y curl python-is-python3 pkg-config build-essential
+RUN curl https://get.volta.sh | bash
+ENV VOLTA_HOME /root/.volta
+ENV PATH /root/.volta/bin:$PATH
+RUN volta install node@${NODE_VERSION} yarn@${YARN_VERSION}
+
+#######################################################################
+
+RUN mkdir /app
+WORKDIR /app
+
+# Yarn will not install any package listed in "devDependencies" when NODE_ENV is set to "production"
+# to install all modules: "yarn install --production=false"
+# Ref: https://classic.yarnpkg.com/lang/en/docs/cli/install/#toc-yarn-install-production-true-false
+
+ENV NODE_ENV production
 
 COPY . .
 
-RUN chmod +x start.sh
+RUN yarn install
+FROM debian:bullseye
 
-RUN redis-server --daemonize yes
+LABEL fly_launch_runtime="nodejs"
 
-CMD ./start.sh
+COPY --from=builder /root/.volta /root/.volta
+COPY --from=builder /app /app
+
+WORKDIR /app
+ENV NODE_ENV production
+ENV PATH /root/.volta/bin:$PATH
+
+CMD [ "yarn", "run", "start" ]
