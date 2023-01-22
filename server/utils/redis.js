@@ -2,7 +2,13 @@ const Redis = require("ioredis");
 const dotenv = require("dotenv");
 dotenv.config();
 
-let client = new Redis(process.env.REDIS_URL, {family: 6});
+// let client = new Redis(process.env.REDIS_URL, {family: 6});
+let client = new Redis({
+  port: 6379,
+  family: 6,
+  host: 'visualizer-server-redis.internal',
+  password: process.env.REDIS_PASSWORD,
+});
 
 if (client) {
   console.log("Connected to Redis! 🚀");
