@@ -4,8 +4,6 @@ dotenv.config();
 
 let client = new Redis(process.env.REDIS_URL);
 
-client.set('success', 'true');
-
 if (client) {
   console.log("Connected to Redis! 🚀");
 
