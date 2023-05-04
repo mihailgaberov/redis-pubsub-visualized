@@ -1,54 +1,41 @@
-const { ApolloServer } = require("apollo-server-express");
-const { createServer } = require("http");
-const express = require("express");
-const cors = require("cors");
-
-const {
-  ApolloServerPluginDrainHttpServer,
-  ApolloServerPluginLandingPageLocalDefault,
-} = require("apollo-server-core");
-const { makeExecutableSchema } = require("@graphql-tools/schema");
-const { WebSocketServer } = require("ws");
-const { useServer } = require("graphql-ws/lib/use/ws");
+const express = require('express');
+const { ApolloServer } = require('apollo-server-express');
+const http = require('http');
+const { Server: WebSocketServer } = require('ws');
 const { resolvers } = require("./resolvers.js");
 const typeDefs = require("./schema.js");
 
-(async () => {
-  const schema = makeExecutableSchema({ typeDefs, resolvers });
-  const app = express();
-  app.use(cors());
-  const httpServer = createServer(app);
-  const PORT = 4000;
+const PORT = process.env.PORT || 4000;
 
-  const wsServer = new WebSocketServer({
-    server: httpServer,
-    path: "/graphql",
+const app = express();
+
+const apolloServer = new ApolloServer({
+  typeDefs,
+  resolvers,
+});
+
+const server = http.createServer(app);
+
+const wsServer = new WebSocketServer({ server });
+
+wsServer.on('connection', (socket) => {
+  console.log('New WebSocket connection');
+
+  socket.on('message', (message) => {
+    console.log('Received WebSocket message:', message);
+
+    // Handle incoming message and send updates to other clients
   });
 
-  const serverCleanup = useServer({ schema }, wsServer);
-
-  const server = new ApolloServer({
-    schema,
-    csrfPrevention: true,
-    cache: "bounded",
-    plugins: [
-      ApolloServerPluginDrainHttpServer({ httpServer }),
-      {
-        async serverWillStart() {
-          return {
-            async drainServer() {
-              await serverCleanup.dispose();
-            },
-          };
-        },
-      },
-      ApolloServerPluginLandingPageLocalDefault({ embed: true }),
-    ],
+  socket.on('close', () => {
+    console.log('WebSocket connection closed');
   });
-  await server.start();
-  server.applyMiddleware({ app });
+});
 
-  httpServer.listen(PORT, () => {
-    console.log(`🚀 Server is now running on :${PORT}${server.graphqlPath}`);
-  });
-})();
+server.listen({ port: PORT }, async () => {
+  await apolloServer.start();
+  apolloServer.applyMiddleware({ app });
+
+  console.log(`Server ready at http://localhost:${PORT}${apolloServer.graphqlPath}`);
+});
+
