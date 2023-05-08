@@ -22,7 +22,7 @@ wsServer.on('connection', (socket) => {
   console.log('New WebSocket connection');
 
   socket.on('message', (message) => {
-    console.log('Received WebSocket message:', message);
+    console.log('Received WebSocket message:', message.toString());
 
     // Handle incoming message and send updates to other clients
   });

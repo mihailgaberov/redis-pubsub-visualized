@@ -1,5 +1,5 @@
-import React, { FunctionComponent, useState } from "react";
-import { gql } from "@apollo/client";
+import React, {FunctionComponent, useState} from "react";
+import {gql} from "@apollo/client";
 
 import "./SubscribeButton.scss";
 
@@ -47,17 +47,18 @@ function subscribeTo(
   subscribeToMore: Function,
   processDataCallback: Function
 ): Function {
-  const unsubscribe = subscribeToMore({
+  return subscribeToMore({
     document: mapTitleToSubscription[channelTitle],
-    updateQuery: (prev: any, { subscriptionData }) => {
+    updateQuery: (prev: any, {subscriptionData}) => {
+
+      console.log(">>> prev: ", prev)
+      console.log(">>> subsData: ", subscriptionData)
       if (!subscriptionData.data) return prev;
 
       processDataCallback(subscriptionData.data);
       return subscriptionData.data;
     },
   });
-
-  return unsubscribe;
 }
 
 export const SubscribeButton: FunctionComponent<SubscribeButtonProps> = ({

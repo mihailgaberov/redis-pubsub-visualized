@@ -44,6 +44,7 @@ function PrepareNewsDataReducer(
   state: InitialState,
   action: { data: {}; type: string }
 ) {
+  console.log(">>> reducer action: ", action)
   const data = action.data;
 
   switch (action.type) {
@@ -72,6 +73,7 @@ export const Subscriber: FunctionComponent<SubscriberProps> = ({
   );
 
   useEffect(() => {
+    console.log(">>> currentNews: ", currentNews)
     if (currentNews) {
       dispatch({ type: "UPDATE", data: currentNews });
     }
