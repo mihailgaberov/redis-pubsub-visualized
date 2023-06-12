@@ -1,4 +1,3 @@
-import React from "react";
 import {
   ApolloClient,
   ApolloProvider,
@@ -13,7 +12,9 @@ import { Subscriber } from "./components/Subscriber";
 import { Publisher } from "./components/Publisher";
 import "./App.scss";
 
+// @ts-ignore
 const SERVER_HTTP_LINK = import.meta.env.VITE_SERVER_HTTP_LINK;
+// @ts-ignore
 const SERVER_WS_LINK = import.meta.env.VITE_SERVER_WS_LINK;
 
 const httpLink = new HttpLink({

@@ -1,12 +1,12 @@
-import React, {FunctionComponent, useState} from "react";
-import {gql} from "@apollo/client";
+import { FunctionComponent, useState } from "react";
+import { gql } from "@apollo/client";
 
 import "./SubscribeButton.scss";
 
 interface SubscribeButtonProps {
-  channelName: string;
-  subscribeToMore: Function;
-  displayNewsCallback: Function;
+    channelName: string;
+    subscribeToMore: Function;
+    displayNewsCallback: Function;
 }
 
 const WEATHER_SUBSCRIBE = gql`
@@ -37,74 +37,74 @@ const MUSIC_SUBSCRIBE = gql`
 `;
 
 const mapTitleToSubscription = {
-  Weather: WEATHER_SUBSCRIBE,
-  Sport: SPORT_SUBSCRIBE,
-  Music: MUSIC_SUBSCRIBE,
+    Weather: WEATHER_SUBSCRIBE,
+    Sport: SPORT_SUBSCRIBE,
+    Music: MUSIC_SUBSCRIBE,
 };
 
 function subscribeTo(
-  channelTitle: string,
-  subscribeToMore: Function,
-  processDataCallback: Function
+    channelTitle: string,
+    subscribeToMore: Function,
+    processDataCallback: Function
 ): Function {
-  return subscribeToMore({
-    document: mapTitleToSubscription[channelTitle],
-    updateQuery: (prev: any, {subscriptionData}) => {
+    return subscribeToMore({
+        document: mapTitleToSubscription[channelTitle],
+        updateQuery: (prev: any, {subscriptionData}) => {
 
-      console.log(">>> prev: ", prev)
-      console.log(">>> subsData: ", subscriptionData)
-      if (!subscriptionData.data) return prev;
+            console.log(">>> prev: ", prev)
+            console.log(">>> subsData: ", subscriptionData)
+            if (!subscriptionData.data) return prev;
 
-      processDataCallback(subscriptionData.data);
-      return subscriptionData.data;
-    },
-  });
+            processDataCallback(subscriptionData.data);
+            return subscriptionData.data;
+        },
+    });
 }
 
 export const SubscribeButton: FunctionComponent<SubscribeButtonProps> = ({
-  channelName,
-  subscribeToMore,
-  displayNewsCallback,
-}) => {
-  const [unSubscribeHandlers, setUnSubscribeHandlers] = useState(new Map());
+                                                                             channelName,
+                                                                             subscribeToMore,
+                                                                             displayNewsCallback,
+                                                                         }) => {
+    const [unSubscribeHandlers, setUnSubscribeHandlers] = useState(new Map());
 
-  function subscribe() {
-    const unsubscribe = subscribeTo(
-      channelName,
-      subscribeToMore,
-      displayNewsCallback
+    function subscribe() {
+        const unsubscribe = subscribeTo(
+            channelName,
+            subscribeToMore,
+            displayNewsCallback
+        );
+
+        setUnSubscribeHandlers((prev) =>
+            new Map(prev).set(channelName, unsubscribe)
+        );
+    }
+
+    function unSubscribe() {
+        unSubscribeHandlers.get(channelName)();
+        setUnSubscribeHandlers((prev) => {
+            const newState = new Map(prev);
+            newState.delete(channelName);
+            return newState;
+        });
+    }
+
+    return (
+        <>
+            {!unSubscribeHandlers.get(channelName) && (
+                <button className="subscribe-btn" onClick={() => subscribe()}>
+                    <sup>Subscribe for</sup>
+                    <br/>
+                    {channelName}
+                </button>
+            )}
+            {unSubscribeHandlers.get(channelName) && (
+                <button className="subscribe-btn" onClick={() => unSubscribe()}>
+                    <sup>Unsubscribe for</sup>
+                    <br/>
+                    {channelName}
+                </button>
+            )}
+        </>
     );
-
-    setUnSubscribeHandlers((prev) =>
-      new Map(prev).set(channelName, unsubscribe)
-    );
-  }
-
-  function unSubscribe() {
-    unSubscribeHandlers.get(channelName)();
-    setUnSubscribeHandlers((prev) => {
-      const newState = new Map(prev);
-      newState.delete(channelName);
-      return newState;
-    });
-  }
-
-  return (
-    <>
-      {!unSubscribeHandlers.get(channelName) && (
-        <button className="subscribe-btn" onClick={() => subscribe()}>
-          <sup>Subscribe for</sup>
-          <br />
-          {channelName}
-        </button>
-      )}
-      {unSubscribeHandlers.get(channelName) && (
-        <button className="subscribe-btn" onClick={() => unSubscribe()}>
-          <sup>Unsubscribe for</sup>
-          <br />
-          {channelName}
-        </button>
-      )}
-    </>
-  );
 };

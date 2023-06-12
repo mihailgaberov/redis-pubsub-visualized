@@ -1,5 +1,5 @@
-import {FunctionComponent} from "react";
-import {gql, useMutation} from "@apollo/client";
+import { FunctionComponent } from "react";
+import { gql, useMutation } from "@apollo/client";
 
 import "./Publisher.scss";
 
@@ -50,8 +50,12 @@ export const Publisher: FunctionComponent<PublisherProps> = ({
     };
 
     function publishTo(channel: string) {
-        console.log(">>> publish: ", mapNameToPublishMethod[channel]())
-        mapNameToPublishMethod[channel]();
+        console.log(">>> mapNameToPublishMethod: ", mapNameToPublishMethod)
+        console.log(">>> publish: ", channel)
+        // console.log(">>> publish: ", mapNameToPublishMethod[channel]())
+        // mapNameToPublishMethod[channel]();
+        publishWeather().then(
+            r => console.log('>>> weather published', r))
     }
 
     return (
