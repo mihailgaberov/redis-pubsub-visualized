@@ -79,7 +79,7 @@ export const Subscriber: FunctionComponent<SubscriberProps> = ({
     }
   }, [currentNews]);
 
-  if (error) return <div>Error!</div>;
+  if (error) return <div>An error occurred while querying channel {currentShow.channelName}.</div>;
   if (loading) return <div>Loading...</div>;
 
   return (

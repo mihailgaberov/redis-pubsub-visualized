@@ -50,6 +50,7 @@ export const Publisher: FunctionComponent<PublisherProps> = ({
     };
 
     function publishTo(channel: string) {
+        console.log(">>> channel: ", channel)
         console.log(">>> publish: ", mapNameToPublishMethod[channel]())
         mapNameToPublishMethod[channel]();
     }

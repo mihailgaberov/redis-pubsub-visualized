@@ -1,4 +1,3 @@
-import React from "react";
 import {
   ApolloClient,
   ApolloProvider,
@@ -50,7 +49,7 @@ function App() {
         <section className="publishers">
           {[
             { name: "weather", icon: "⛅" },
-            { name: "sport", icon: "🤾‍♀️" },
+            { name: "sport", icon: "🤾‍" },
             { name: "music", icon: "🎶" },
           ].map((channel, idx) => (
             <Publisher key={idx} icon={channel.icon} name={channel.name} />
