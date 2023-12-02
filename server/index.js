@@ -36,6 +36,6 @@ server.listen({ port: PORT }, async () => {
   await apolloServer.start();
   apolloServer.applyMiddleware({ app });
 
-  console.log(`Server ready at http://localhost:${PORT}${apolloServer.graphqlPath}`);
+  console.log(`🍦Server ready at http://localhost:${PORT}${apolloServer.graphqlPath}`);
 });
 
