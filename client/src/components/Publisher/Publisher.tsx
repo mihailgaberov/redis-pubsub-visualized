@@ -49,10 +49,8 @@ export const Publisher: FunctionComponent<PublisherProps> = ({
         music: publishMusic,
     };
 
-    function publishTo(channel: string) {
-        console.log(">>> channel: ", channel)
-        console.log(">>> publish: ", mapNameToPublishMethod[channel]())
-        mapNameToPublishMethod[channel]();
+    async function publishTo(channel: string) {
+        await mapNameToPublishMethod[channel]();
     }
 
     return (

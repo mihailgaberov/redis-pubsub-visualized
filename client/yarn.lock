@@ -2152,7 +2152,6 @@ __metadata:
     "@types/react-dom": ^18.0.6
     "@vitejs/plugin-react": ^2.0.1
     apollo-boost: ^0.4.9
-    apollo-client: ^2.6.10
     apollo-link-ws: ^1.0.20
     graphql: ^16.6.0
     graphql-transport-ws: ^1.9.0

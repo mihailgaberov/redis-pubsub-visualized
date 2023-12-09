@@ -9,20 +9,27 @@ const CHANNELS = {
 };
 
 const publishData = async (data, channel) => {
-  pubsub.publish(channel, { [channel]: data });
+  console.log("📢 [server]: publishData", data, channel);
+  await pubsub.publish(channel, { [channel]: data });
   await set(channel, data);
   return data;
 };
 
-module.export = {
+module.exports = {
   Query: {
     weather: () => get(CHANNELS.WEATHER),
     sport: () => get(CHANNELS.SPORT),
     music: () => get(CHANNELS.MUSIC),
   },
   Subscription: {
-    weather: {
+    /*weather: {
       subscribe: () => pubsub.asyncIterator(CHANNELS.WEATHER),
+    },*/
+    weather: {
+      subscribe: (_, __, { pubsub }) => {
+        console.log('>>> Subscription: weather subscribe');
+        return pubsub.asyncIterator(CHANNELS.WEATHER);
+      },
     },
     sport: {
       subscribe: () => pubsub.asyncIterator(CHANNELS.SPORT),
@@ -32,8 +39,7 @@ module.export = {
     },
   },
   Mutation: {
-    weather: () =>
-      publishData({ icon: "🌧", text: "Raining men" }, CHANNELS.WEATHER),
+    weather: () => publishData({ icon: "🌧", text: "Raining men" }, CHANNELS.WEATHER),
     sport: () =>
       publishData(
         { icon: "⚽️", text: "Barcelona vs Munich: 3 : 1" },

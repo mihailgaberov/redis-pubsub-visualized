@@ -12,7 +12,7 @@ interface SubscriberProps {
   subscriberNo: number;
 }
 
-const WEATHER_QUERY = gql`
+const ALL_CHANNELS_QUERY = gql`
   query Weather {
     weather {
       icon
@@ -64,7 +64,7 @@ function PrepareNewsDataReducer(
 export const Subscriber: FunctionComponent<SubscriberProps> = ({
   subscriberNo,
 }) => {
-  const { loading, error, subscribeToMore } = useQuery(WEATHER_QUERY);
+  const { loading, error, subscribeToMore } = useQuery(ALL_CHANNELS_QUERY);
 
   const [currentNews, setCurrentNews] = useState();
   const [currentShow, dispatch] = useReducer(

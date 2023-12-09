@@ -46,19 +46,18 @@ function subscribeTo(
   channelTitle: string,
   subscribeToMore: Function,
   processDataCallback: Function
-): Function {
-  return subscribeToMore({
+) {
+  const unsubscribe = subscribeToMore({
     document: mapTitleToSubscription[channelTitle],
     updateQuery: (prev: any, {subscriptionData}) => {
-
-      console.log(">>> prev: ", prev)
-      console.log(">>> subsData: ", subscriptionData)
       if (!subscriptionData.data) return prev;
 
       processDataCallback(subscriptionData.data);
       return subscriptionData.data;
     },
   });
+
+  return unsubscribe;
 }
 
 export const SubscribeButton: FunctionComponent<SubscribeButtonProps> = ({
@@ -69,6 +68,8 @@ export const SubscribeButton: FunctionComponent<SubscribeButtonProps> = ({
   const [unSubscribeHandlers, setUnSubscribeHandlers] = useState(new Map());
 
   function subscribe() {
+    console.log(">>> subscribe: ", channelName)
+
     const unsubscribe = subscribeTo(
       channelName,
       subscribeToMore,

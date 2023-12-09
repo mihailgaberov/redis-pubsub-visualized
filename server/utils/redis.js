@@ -29,6 +29,7 @@ module.exports = {
   },
 
   set: async (key, data) => {
+    console.log('🚀 [server]: set', key, data);
     try {
       await client.set(key, JSON.stringify(data));
       return true;
