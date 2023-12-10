@@ -1,57 +1,10 @@
-import React from "react";
-import {
-  ApolloClient,
-  ApolloProvider,
-  InMemoryCache,
-  split,
-  HttpLink,
-} from "@apollo/client";
-import { getMainDefinition } from "@apollo/client/utilities";
-import { GraphQLWsLink } from "@apollo/client/link/subscriptions";
-import { createClient } from "graphql-ws";
-
-
-
-import { Subscriber } from "./components/Subscriber";
-import { Publisher } from "./components/Publisher";
 import "./App.scss";
-
-// @ts-ignore
-const SERVER_HTTP_LINK = import.meta.env.VITE_SERVER_HTTP_LINK;
-// @ts-ignore
-const SERVER_WS_LINK = import.meta.env.VITE_SERVER_WS_LINK;
-
-
-const httpLink = new HttpLink({
-  uri: SERVER_HTTP_LINK,
-});
-
-const wsLink = new GraphQLWsLink(
-  createClient({
-    url: SERVER_WS_LINK,
-  })
-);
-
-const link = split(
-  ({ query }) => {
-    const definition = getMainDefinition(query);
-    return (
-      definition.kind === "OperationDefinition" &&
-      definition.operation === "subscription"
-    );
-  },
-  wsLink,
-  httpLink
-);
-
-const client = new ApolloClient({
-  cache: new InMemoryCache(),
-  link,
-});
+import { Publisher } from "./components/Publisher";
+import { Subscriber } from "./components/Subscriber";
 
 function App() {
   return (
-    <ApolloProvider client={client}>
+  
       <div className="app">
         <section className="publishers">
           {[
@@ -68,7 +21,6 @@ function App() {
           ))}
         </section>
       </div>
-    </ApolloProvider>
   );
 }
 
