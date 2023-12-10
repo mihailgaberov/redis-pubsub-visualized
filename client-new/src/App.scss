@@ -1,0 +1,13 @@
+.app {
+  display: flex;
+  flex-direction: column;
+
+  .publishers {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .subscribers {
+    display: flex;
+  }
+}

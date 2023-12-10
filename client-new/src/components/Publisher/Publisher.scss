@@ -1,0 +1,56 @@
+.publisher {
+  .icon {
+    width: 3rem;
+    height: 3rem;
+    display: block;
+    margin: 0 auto;
+    padding: 1rem;
+    font-size: 3.5em;
+    line-height: 1;
+    cursor: pointer;
+    background-image: linear-gradient(to bottom, #547ab0, #f0f4fa);
+    transition: 0.3s ease-out all;
+    border: 2px solid white;
+    border-radius: 0.5rem;
+
+    &:hover {
+      opacity: 0.78;
+      font-size: 4em;
+      background-image: var(--orange-gradient);
+    }
+  }
+
+  button {
+    font-size: 16px;
+    font-weight: 100;
+    letter-spacing: 10px;
+    background: #333;
+    color: white;
+    display: block;
+    appearance: none;
+    margin-bottom: 1.2rem;
+    border: 1px solid #333;
+    border-radius: 0.5rem;
+    transition: 0.3s border-radius;
+    text-transform: uppercase;
+    padding: 0.7rem 1.2rem;
+    -webkit-appearance: none;
+  }
+
+  button:hover {
+    background: #bf1650;
+    border-radius: 40px;
+    transition: 0.3s all;
+  }
+
+  button:active {
+    transition: 0.3s all;
+    transform: translateY(3px);
+    border: 1px solid transparent;
+    opacity: 0.8;
+  }
+
+  button:disabled {
+    opacity: 0.4;
+  }
+}
