@@ -4,6 +4,7 @@ import { ApolloClient, InMemoryCache, ApolloProvider, HttpLink, split } from '@a
 import { GraphQLWsLink } from "@apollo/client/link/subscriptions";
 import { createClient } from "graphql-ws";
 import { getMainDefinition } from "@apollo/client/utilities";
+import './index.css'
 
 import App from './App';
 
