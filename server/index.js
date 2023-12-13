@@ -71,8 +71,6 @@ const apolloServer = new ApolloServer({
 
 const wsServer = new WebSocketServer({ noServer: true }); // WebSocket server without HTTP server
 
-
-
 wsServer.on('connection', (socket) => {
   console.log('🔗 New WebSocket connection');
 
