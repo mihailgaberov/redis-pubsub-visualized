@@ -44,8 +44,9 @@ export const Publisher = ({
         music: publishMusic,
     };
 
-    async function publishTo(channel) {
-        await mapNameToPublishMethod[channel]();
+    const publishTo = (channel) => {
+      console.log(">>> publishTo: ", channel)
+        mapNameToPublishMethod[channel]();
     }
 
     return (

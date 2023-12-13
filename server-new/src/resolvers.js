@@ -24,14 +24,8 @@ export const resolvers = {
     music: () => get(CHANNELS.MUSIC),
   },
   Subscription: {
-    /*weather: {
-      subscribe: () => pubsub.asyncIterator(CHANNELS.WEATHER),
-    },*/
     weather: {
-      subscribe: (_, __, { pubsub }) => {
-        console.log('>>> Subscription: weather subscribe');
-        return pubsub.asyncIterator(CHANNELS.WEATHER);
-      },
+      subscribe: () => pubsub.asyncIterator(CHANNELS.WEATHER),
     },
     sport: {
       subscribe: () => pubsub.asyncIterator(CHANNELS.SPORT),
