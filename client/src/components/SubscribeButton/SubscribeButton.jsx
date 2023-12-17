@@ -62,8 +62,6 @@ export const SubscribeButton = ({
   const [unSubscribeHandlers, setUnSubscribeHandlers] = useState(new Map());
 
   function subscribe() {
-    console.log(">>> subscribe: ", channelName)
-
     const unsubscribe = subscribeTo(
       channelName,
       subscribeToMore,

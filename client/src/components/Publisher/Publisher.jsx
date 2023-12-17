@@ -45,7 +45,6 @@ export const Publisher = ({
     };
 
     const publishTo = (channel) => {
-      console.log(">>> publishTo: ", channel)
         mapNameToPublishMethod[channel]();
     }
 
