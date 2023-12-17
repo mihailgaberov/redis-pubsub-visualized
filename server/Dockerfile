@@ -15,6 +15,9 @@ RUN apt-get update && apt-get install -y nodejs
 # Install Yarn
 RUN curl -o- -L https://yarnpkg.com/install.sh | bash
 
+# Add Yarn to the PATH
+ENV PATH="/root/.yarn/bin:$PATH"
+
 # Install other dependencies
 RUN apt-get install -y redis-server
 
