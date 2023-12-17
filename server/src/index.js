@@ -60,4 +60,4 @@ app.use(
 // Modified server startup
 await new Promise((resolve) => httpServer.listen({ port: 4000 }, resolve));
 
-console.log(`🚀 Server ready at ${httpServer.address}:${httpServer.port}`);
+console.log(`🚀 Server ready at http://${httpServer.address().address}:${httpServer.address().port}`);
