@@ -4,7 +4,7 @@
 
 A small demo app to show visually Redis Pub/Sub pattern in action
 
-### Screenshots
+### Screenshot
 
 ![Redis Pub/Sub Visualizer](https://github.com/mihailgaberov/redis-pub-sub-visualized/blob/main/screenshots/redis-pub-sub-visualizer.png)
 
